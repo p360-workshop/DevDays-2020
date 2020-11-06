@@ -1,0 +1,22 @@
+What if we wanted a single point of entry for our service from the oustide? For that we need a LoadBalancer type of service. 
+If you are running on any of the major cloud providers it will be freely available for you, but if you are on-prem or in this case katacoda, then you need to make this functionality available.
+
+Lets make katacoda LoadBalancer friendly:
+
+`kubectl create -f cloudprovider.yml`{{execute}}
+
+Once we have that we can create our service:
+
+`kubectl create -f loadbalancer-service.yml`{{execute}}
+
+We can check if it was created with:
+
+`kubectl get svc -o wide`{{execute}}
+
+or if we want more information:
+
+`kubectl describe svc lb-nginx-service`{{execute}}
+
+We can now access our service with:
+
+`curl http://<EXTERNAL-IP>`

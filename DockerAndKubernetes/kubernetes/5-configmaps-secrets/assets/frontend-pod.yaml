@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-pod
+  namespace: contino
+spec:
+  containers:
+  - name: nginx
+    image: nginx

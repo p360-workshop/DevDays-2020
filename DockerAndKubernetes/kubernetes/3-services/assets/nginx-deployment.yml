@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+      name: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: nginx
+    spec:
+      containers:
+      - image: katacoda/docker-http-server:latest
+        name: nginx
+        ports:
+        - name: http
+          containerPort: 80
