@@ -6,6 +6,6 @@ A [**Label**](https://kubernetes.io/docs/concepts/overview/working-with-objects/
 
 A **Volume** serves data to the pod.
 
-<p style="text-align:center;"><img src="/contino/courses/kubernetes/pods/assets/pod.png" alt="Pod"></p>
+![image](assets/pod.png)
 
 > **NOTE:** Don’t use naked Pods (that is, Pods not bound to a ReplicaSet or Deployment) if you can avoid it. Naked Pods will not be rescheduled in the event of a node failure. For further information, refer to the Kubernetes [Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/#naked-pods-vs-replicasets-deployments-and-jobs) documentation.

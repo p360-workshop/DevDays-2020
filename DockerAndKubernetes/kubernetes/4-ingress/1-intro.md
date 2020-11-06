@@ -27,5 +27,4 @@ spec:
           serviceName: forums
           servicePort: 80
 ```
-
-<p style="text-align:center;"><img src="https://katacoda.com/contino/courses/kubernetes/ingress/assets/ingressoverview.jpeg" alt="ingress-overview"></p>
+![image](assets/ingressoverview.jpeg)

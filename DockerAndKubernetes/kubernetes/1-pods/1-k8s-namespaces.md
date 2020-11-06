@@ -4,7 +4,7 @@
 
 Let's take a look at the initial Kubernetes namespaces:
 
-`kubectl get namespace`{{execute}}
+`kubectl get namespace`
 
 By default, Kubernetes comes with a few predefined namespaces. We can see them here:
 
@@ -14,7 +14,7 @@ By default, Kubernetes comes with a few predefined namespaces. We can see them h
 
 This namespace has objects created by Kubernetes system:
 
-`kubectl get pods -n kube-system; echo`{{execute}}
+`kubectl get pods -n kube-system; echo`
 
 Pods inside of this namespace are needed to make Kubernetes work, such as controllers and add-ons natively integrated with Kubernetes which we will talk later on.
 
@@ -24,11 +24,11 @@ Pods inside of this namespace are needed to make Kubernetes work, such as contro
 
 This namespace has a `ConfigMap` which contains the [bootstrapping and certificate](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) configuration for the Kubernetes cluster:
 
-`kubectl get pods -n kube-public; echo`{{execute}}
+`kubectl get pods -n kube-public; echo`
 
 You won't see anything running in this namespace, but we can see a `cluster-info` ConfigMap:
 
-`kubectl get configmap -n kube-public cluster-info -o yaml; echo`{{execute}}
+`kubectl get configmap -n kube-public cluster-info -o yaml; echo`
 
 In addition, this namespace might be treated as a location used to run an object which should be visible and readable throughout the whole cluster.
 
@@ -38,6 +38,6 @@ All objects created without specifying a namespace will automatically be created
 
 This namespace is initially empty and doesn't contain any objects:
 
-`kubectl get pods -n default; echo`{{execute}}
+`kubectl get pods -n default; echo`
 
 One thing to note about the `default` namespace is that it can't be deleted, unlike other namespaces within the Kubernetes cluster.

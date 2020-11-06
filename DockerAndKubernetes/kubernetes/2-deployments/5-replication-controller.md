@@ -6,28 +6,28 @@ Similar to Deployments, it allows you to tell the Kubernetes scheduler how many 
 
 Look at the replication controller manifest:
 
-`cat rc-nginx.yaml; echo`{{execute}}
+`cat rc-nginx.yaml; echo`
 
 Now create the replication controller:
 
-`kubectl create -f rc-nginx.yaml`{{execute}}
+`kubectl create -f rc-nginx.yaml`
 
 Check for RCs:
 
-`kubectl get rc -n contino`{{execute}}
+`kubectl get rc -n contino`
 
 Now check for pods:
 
-`kubectl get po -n contino`{{execute}}
+`kubectl get po -n contino`
 
 As you can see, there are now 3 pods, as per the replication controller manifest that we just created.
 
 To delete a replication controller:
 
-`kubectl delete rc nginx -n contino`{{execute}}
+`kubectl delete rc nginx -n contino`
 
 ### Scaling RCs
 
 Scaling RCs is very similar to deployments. Edit the replicas in the manifest and use the `kubectl replace -f` command:
 
-`kubectl replace -f rc-nginx.yaml`{{execute}}
+`kubectl replace -f rc-nginx.yaml`

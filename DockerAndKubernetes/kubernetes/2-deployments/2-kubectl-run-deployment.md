@@ -1,16 +1,18 @@
 Kubernetes deployments manage stateless services running in your cluster (as opposed to - for example - StatefulSets, which manage stateful services). Their purpose is to keep a set of identical pods running and upgrade them in a controlled way – performing a rolling update by default. There are different deployment strategies that work with Deployments. They are, however, out of scope of this scenario. For more information on deployment strategies, read the [Kubernetes Documentation here](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#writing-a-deployment-spec).
 
-<p style="text-align:center;"><img src="/contino/courses/kubernetes/basic-deployments/assets/deployment-high-level.png" alt="deployments-high-level-overview"></p>
+
+
+![image](assets/deployment-high-level.png)
 
 ### Creating a Deployment in kubectl
 
 Before we start, you should already have a namespace created called `contino`. If you do not have this namespace yet, or you have deleted it, then please re-create it:
 
-`kubectl create namespace contino`{{execute}}
+`kubectl create namespace contino`
 
 Create a basic deployment called `nginx-deployment` using the `nginx` image, and expose port 80 in the container:
 
-`kubectl run nginx-deployment -n contino --image=nginx --port 80`{{execute}}
+`kubectl run nginx-deployment -n contino --image=nginx --port 80`
 
 ```
 $ kubectl run nginx-deployment -n contino --image=nginx --port 80
@@ -20,7 +22,7 @@ deployment.apps "nginx-deployment" created
 
 Now let's inspect the deployment that we've just created:
 
-`kubectl get deployment nginx-deployment -n contino -o yaml`{{execute}}
+`kubectl get deployment nginx-deployment -n contino -o yaml`
 
 ```
 apiVersion: extensions/v1beta1

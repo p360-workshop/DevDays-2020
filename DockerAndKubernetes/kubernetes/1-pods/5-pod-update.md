@@ -10,7 +10,7 @@ Look at the file `/pod-update.yaml`{{open}}:
 
 A pod can be updated by applying a yaml file so let's apply our ```pod-update.yaml``` that includes the above changes:
 
-`kubectl apply -f /pods-manifests/pod-update.yaml`{{execute}}
+`kubectl apply -f /pods-manifests/pod-update.yaml`
 
 ### Did it work? What happened?
 
@@ -33,26 +33,26 @@ We could bypass these situations with "deployments" which we will cover in other
 
 Delete the pod:
 
-`kubectl delete pod happypanda -n dev-service1`{{execute}}
+`kubectl delete pod happypanda -n dev-service1`
 
 Apply the yaml file:
 
-`kubectl apply -f /pods-manifests/pod-update.yaml`{{execute}}
+`kubectl apply -f /pods-manifests/pod-update.yaml`
 
 Check it out:
 
-`kubectl describe pod happypanda --namespace dev-service1`{{execute}}
+`kubectl describe pod happypanda --namespace dev-service1`
 
 Our happypanda pod is now running with labels, port specification and a new container image!
 
-`kubectl get pod -n dev-service1`{{execute}}
+`kubectl get pod -n dev-service1`
 
 ### Clean up
 
 Delete pod:
 
-`kubectl delete pod happypanda -n dev-service1`{{execute}}
+`kubectl delete pod happypanda -n dev-service1`
 
 Delete namespace:
 
-`kubectl delete namespace dev-service1`{{execute}}
+`kubectl delete namespace dev-service1`

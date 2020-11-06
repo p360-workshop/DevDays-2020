@@ -2,8 +2,8 @@ First things first, lets create a deployment that we will use to learn the vario
 
 To do so run:
 
-`kubectl create -f nginx-deployment.yml`{{execute}}
+`kubectl create -f nginx-deployment.yml`
 
 and make sure all is healthy:
 
-`kubectl get deploy`{{execute}}
+`kubectl get deploy`

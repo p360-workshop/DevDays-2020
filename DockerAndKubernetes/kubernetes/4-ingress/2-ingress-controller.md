@@ -6,15 +6,15 @@ Ingress Controllers can technically be any system capable of reverse proxying, b
 
 First, inspect the file:
 
-`cat ing-controller.yaml; echo`{{execute}}
+`cat ing-controller.yaml; echo`
 
 Now create it:
 
-`kubectl create -f ing-controller.yaml`{{execute}}
+`kubectl create -f ing-controller.yaml`
 
 This is essentially an Nginx image that monitors Ingress resources for requested routes to serve. One callout you may have noticed is that it specifies a --default-backend-service as a startup argument, passing in nginx-default-backend. This is wanting a service that can simply handle returning a 404 response for requests that the Ingress Controller is unable to match to an Ingress rule. Let’s create that as well with the specified name:
 
-`kubectl create -f ing-backend.yaml`{{execute}}
+`kubectl create -f ing-backend.yaml`
 
 I said Ingress is made up of two main components and we introduced three new things. This is because the default backend isn’t really a piece of Ingress itself, but rather is something that the Nginx Ingress Controller requires. Other Ingress Controllers won’t necessarily have this component.
 
@@ -24,14 +24,14 @@ Assuming you’ve created the Ingress Controller above with the dependent defaul
 
 As a quick test, you can deploy the following instead.
 
-`kubectl create -f demo-ing.yaml`{{execute}}
+`kubectl create -f demo-ing.yaml`
 
 To test things out, you need to get your Ingress Controller entrypoint.
 
 For LoadBalancer services that will be:
 
-`kubectl get service ingress-nginx -o wide`{{execute}}
+`kubectl get service ingress-nginx -o wide`
 
 For NodePort services, you can find the exposed port with:
 
-`kubectl describe service ingress-nginx`{{execute}}
+`kubectl describe service ingress-nginx`

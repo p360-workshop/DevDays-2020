@@ -2,15 +2,15 @@ What if we wanted to expose our service outside of the cluster? This is where No
 
 Lets create one:
 
-`kubectl create -f nodeport-service.yml`{{execute}}
+`kubectl create -f nodeport-service.yml`
 
 We can check if it was created with:
 
-`kubectl get svc -o wide`{{execute}}
+`kubectl get svc -o wide`
 
 or if we want more information:
 
-`kubectl describe svc nodeport-nginx-service`{{execute}}
+`kubectl describe svc nodeport-nginx-service`
 
 We can now access our service with:
 
