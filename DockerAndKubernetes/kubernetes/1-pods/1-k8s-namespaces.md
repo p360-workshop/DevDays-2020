@@ -8,7 +8,7 @@ Let's take a look at the initial Kubernetes namespaces:
 
 By default, Kubernetes comes with a few predefined namespaces. We can see them here:
 
-<p style="text-align:center;"><img src="/contino/courses/kubernetes/pods/assets/namespaces.png" alt="Namespaces"></p>
+![Image](assets/namespaces.png)
 
 ### kube-system
 
