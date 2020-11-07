@@ -1,4 +1,4 @@
-# The goal of this interactive scenario is to scale a deployment with kubectl scale and to see the load balancing in action #
+# The goal of this lab is to scale a deployment with kubectl scale and to see the load balancing in action #
 
 
 To list your deployments use the `get deployments` command:
@@ -43,3 +43,40 @@ There are 4 Pods now, with different IP addresses. The change was registered in 
 `kubectl describe deployments/kubernetes-bootcamp`
 
 You can also view in the output of this command that there are 4 replicas now.
+
+
+
+**validation**
+
+
+Let’s check that the Service is load-balancing the traffic. To find out the exposed IP and Port we can use the describe service as we learned in the previous Module:
+
+`kubectl describe services/kubernetes-bootcamp`
+
+Create an environment variable called NODE_PORT that has a value as the Node port:
+
+`export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
+echo NODE_PORT=$NODE_PORT`
+
+Next, we’ll do a `curl` to the exposed IP and port. Execute the command multiple times:
+
+`curl $(minikube ip):$NODE_PORT`
+
+We hit a different Pod with every request. This demonstrates that the load-balancing is working.
+
+
+**Scale Down**
+
+To scale down the Service to 2 replicas, run again the `scale` command:
+
+`kubectl scale deployments/kubernetes-bootcamp --replicas=2`
+ 
+List the Deployments to check if the change was applied with the `get deployments` command:
+
+`kubectl get deployments`
+
+The number of replicas decreased to 2. List the number of Pods, with `get pods`:
+ 
+`kubectl get pods -o wide`
+
+This confirms that 2 Pods were terminated.

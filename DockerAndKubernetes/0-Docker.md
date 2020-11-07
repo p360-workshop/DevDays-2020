@@ -57,7 +57,7 @@ RUN set -o errexit -o nounset \
 
 To build a docker container image from a Dockerbuild file run the following
 
-` docker build . -t <ecr repo name>:<your name>`
+` docker build . -t 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<YourMSid>`
 
 To see image you have available in your machine run the following:
 
@@ -66,16 +66,16 @@ To see image you have available in your machine run the following:
 
 To push the image that you just built , run the following command:
 
-`docker push <ecr repo name>:<your name>`
+`docker push 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<YourMSid>`
 
 To remove an image that you just built, run the following command:
 
-`docker rmi <ecr repo name>:<your name>`
+`docker rmi 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<YourMSid>`
 
 
 To pull an image that you just pushed, run the following command:
 
-`docker pull <ecr repo name>:<your name>`
+`docker pull 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<YourMSid>`
 
 
 ### Launching a container
