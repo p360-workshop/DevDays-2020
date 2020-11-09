@@ -1,0 +1,35 @@
+version: "3"
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: elasticsearch-devdays
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+#    volumes:
+#      - vibhuviesdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+    labels:
+      - co.elastic.logs/module=elasticsearch
+      - co.elastic.metrics/module=elasticsearch
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.7.0
+    container_name: kibana-devdays
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    networks:
+      - elastic
+networks:
+  elastic:
+    driver: bridge
+#volumes:
+#  vibhuviesdata:
+#    driver: local
