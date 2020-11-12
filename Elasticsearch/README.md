@@ -1,3 +1,3 @@
-View slides [here](https://github.optum.com/pages/rjanaswa/elasticsearch//slides/slides.html)
+View slides [here](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/slides/slides.html)
 
-View lab material [here](https://github.optum.com/pages/rjanaswa/elasticsearch//labs/)
+View lab material [here](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/)
