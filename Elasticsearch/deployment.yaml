@@ -1,0 +1,37 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticdevdays
+  labels:
+    app: elasticdevdays
+spec:
+  selector:
+    matchLabels:
+      app: elasticdevdays
+  template:
+    metadata:
+      labels:
+        app: elasticdevdays
+    spec:
+      containers:
+      - name: elasticdevdays
+        image: 840891909344.dkr.ecr.us-east-1.amazonaws.com/devdays-elastic:raghavi
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+        resources:
+            limits:
+              cpu: 100m
+              memory: 50Mi
+            requests:
+              cpu: 50m
+              memory: 20Mi

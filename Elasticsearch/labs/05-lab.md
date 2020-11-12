@@ -6,7 +6,6 @@
 1. if terminal is not already available on bottom left window, Enable the terminal window by clicking the left top most button 
 
 1. Edit the Configuration properties to configure the elastic index 
-  - `cd spring-app`
   -  `edit the properties in the  /src/main/resource/application.propoerlties`
   -  ` elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/`
   -  ` index.name=<firstname-lastname>`    
