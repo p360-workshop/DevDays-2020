@@ -12,4 +12,4 @@
     1. Are they the same cities each day?
     
   
-[Lab 5 - Visualize - Create](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/05-lab.md)
+link:05-lab.html[Lab 5 - Visualize - Create]

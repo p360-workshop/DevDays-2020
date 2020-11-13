@@ -444,106 +444,139 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_code">Code</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>launch <a href="https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/" class="bare">https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/</a></p>
-</li>
-<li>
-<p>if terminal is not already available on bottom left window, Enable the terminal window by clicking the left top most button</p>
-</li>
-<li>
-<p>The dependency 'spring-boot-starter-data-elasticsearch' is added  for Spring Data ElasticSearch application.</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlight"><code>dependencies {
+<pre>launch https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>if terminal is not already available on bottom left window, Enable the terminal window by clicking the left top most button</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The dependency 'spring-boot-starter-data-elasticsearch' is added  for Spring Data ElasticSearch application.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch'
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
-}</code></pre>
+}</p>
 </div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The sample data model, that is going to be pushed is created as below. The Elastic indecx is configured through application configurations</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlight"><code>@Document(indexName = "${application.index.name}")
-public class Response {
-
-    @Id
-    private String responseId;
-    private String surveyId;
-    private Integer questionNumber;
-    private Integer rating;
-    private String responseText;
-    private String user;
-
-    public String getResponseId() {
-        return responseId;
-    }
-
-    public void setResponseId(String responseId) {
-        this.responseId = responseId;
-    }
-
-    public String getSurveyId() {
-        return surveyId;
-    }
-
-    public void setSurveyId(String surveyId) {
-        this.surveyId = surveyId;
-    }
-
-    public Integer getQuestionNumber() {
-        return questionNumber;
-    }
-
-    public void setQuestionNumber(Integer questionNumber) {
-        this.questionNumber = questionNumber;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public String getResponseText() {
-        return responseText;
-    }
-
-    public void setResponseText(String responseText) {
-        this.responseText = responseText;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
+<pre>The sample data model, that is going to be pushed is created as below. The Elastic indecx is configured through application configurations</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>@Document(indexName = "${application.index.name}")
+public class Response {</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>@Id
+private String responseId;
+private String surveyId;
+private Integer questionNumber;
+private Integer rating;
+private String responseText;
+private String user;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public String getResponseId() {
+    return responseId;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setResponseId(String responseId) {
+    this.responseId = responseId;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public String getSurveyId() {
+    return surveyId;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setSurveyId(String surveyId) {
+    this.surveyId = surveyId;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public Integer getQuestionNumber() {
+    return questionNumber;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setQuestionNumber(Integer questionNumber) {
+    this.questionNumber = questionNumber;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public Integer getRating() {
+    return rating;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setRating(Integer rating) {
+    this.rating = rating;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public String getResponseText() {
+    return responseText;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setResponseText(String responseText) {
+    this.responseText = responseText;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public String getUser() {
+    return user;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    public void setUser(String user) {
         this.user = user;
     }
-}</code></pre>
+}</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Application configuration can be configured for elastic server and elastic index</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/
-index.name==&lt;firstname-lastname&gt;</code></pre>
-</div>
+<div class="paragraph">
+<p>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/
+index.name==&lt;firstname-lastname&gt;</p>
 </div>
 </div>
 </div>
@@ -551,34 +584,29 @@ index.name==&lt;firstname-lastname&gt;</code></pre>
 <div class="paragraph">
 <p>The responseRepository is extended from ElasticSearchRepository</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>@Repository
-public interface ResponseRepository extends ElasticsearchRepository&lt;Response, String&gt; {
-
-    Page&lt;Response&gt; findBySurveyId(String surveyId, Pageable pageable);
-
-}</code></pre>
-</div>
-</div>
 <div class="paragraph">
-<p>The sample data is saved with responseRepository
-    <code>`</code>
-    responseRepository.saveAll(responses);</p>
+<p>@Repository
+public interface ResponseRepository extends ElasticsearchRepository&lt;Response, String&gt; {</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>```</pre>
+<pre>Page&lt;Response&gt; findBySurveyId(String surveyId, Pageable pageable);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>}</p>
+</div>
+<div class="paragraph">
+<p>The sample data is saved with responseRepository</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>responseRepository.saveAll(responses);</pre>
 </div>
 </div>
 <h1 id="_querying_the_elastic_index" class="sect0">Querying the Elastic Index</h1>
 <div class="paragraph">
 <p>ElasticsearchRespository - High level.  Easy to use for simpler operations.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>```</pre>
-</div>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -591,17 +619,7 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>```</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
 <pre>ElasticsearchRestTemplate - Provides range query for searching range of values.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>```</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -613,131 +631,84 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 ).build();</pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>```</pre>
-</div>
-</div>
 <div class="sect1">
 <h2 id="_ready_to_build_the_application">Ready to Build the Application</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Edit the Configuration properties to configure the elastic index</p>
+<div class="literalblock">
+<div class="content">
+<pre>Edit the Configuration properties to configure the elastic index
+    -   edit the properties in the  /src/main/resource/application.properties
+    -    elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/
+    -    index.name=&lt;firstname-lastname&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Clean build and create Boot Jar</pre>
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit the properties in the  /src/main/resource/application.propoerlties</code></p>
+<p>./gradlew clean build</p>
 </li>
 <li>
-<p>` elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/`</p>
-</li>
-<li>
-<p>` index.name=&lt;firstname-lastname&gt;`</p>
-</li>
-</ul>
+<p>./gradlew bootJar</p>
+<div class="literalblock">
+<div class="content">
+<pre>Build the Spring Boot Jar
+     -  ./gradlew bootJar</pre>
+</div>
 </div>
 </li>
-<li>
-<p>Clean build and create Boot Jar</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>./gradlew clean build</code></p>
-</li>
-<li>
-<p><code>./gradlew bootJar</code></p>
-</li>
 </ul>
-</div>
-</li>
-<li>
-<p>Build the Spring Boot Jar</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>./gradlew bootJar</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_run_the_jar">Run the Jar</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Run Jar</p>
-<div class="ulist">
-<ul>
-<li>
-<p>`java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar `</p>
-</li>
-</ul>
+<div class="literalblock">
+<div class="content">
+<pre>Run Jar
+   -  java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar</pre>
 </div>
-</li>
-</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_load_the_sample_data_and_query_the_elastic_index">Load the sample data and query the elastic index</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>To load the sample data into the elastic index, call the following end point from the service</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>curl localhost:8080/load</code></p>
-</li>
-</ul>
+<div class="literalblock">
+<div class="content">
+<pre>To load the sample data into the elastic index, call the following end point from the service
+  -  curl localhost:8080/load</pre>
 </div>
-</li>
-<li>
-<p>To query the Elastic index by a given survey number</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>curl localhost:8080/suvey/102</code></p>
-</li>
-</ul>
 </div>
-</li>
-<li>
-<p>To Find the responses between the ratings 1 and 10</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>curl localhost:8080/rating/1/10</code></p>
-</li>
-</ul>
+<div class="literalblock">
+<div class="content">
+<pre>To query the Elastic index by a given survey number
+  -  curl localhost:8080/suvey/102</pre>
 </div>
-</li>
-<li>
-<p>To find the responses by text search</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>curl localhost:8080/text/handler</code></p>
-</li>
-</ul>
 </div>
-</li>
-</ol>
+<div class="literalblock">
+<div class="content">
+<pre>To Find the responses between the ratings 1 and 10
+  -  curl localhost:8080/rating/1/10</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>To find the responses by text search
+  -  curl localhost:8080/text/handler</pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 03:45:28 UTC
+Last updated 2020-11-13 05:00:35 UTC
 </div>
 </div>
 </body>

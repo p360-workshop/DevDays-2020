@@ -3,13 +3,13 @@
 
 ## Code
 
-1. launch https://<firstname-lastname>.hue.providerdataplatform.net/
+ launch https://<firstname-lastname>.hue.providerdataplatform.net/
 
-1. if terminal is not already available on bottom left window, Enable the terminal window by clicking the left top most button 
+ if terminal is not already available on bottom left window, Enable the terminal window by clicking the left top most button 
 
-1. The dependency 'spring-boot-starter-data-elasticsearch' is added  for Spring Data ElasticSearch application.
+ The dependency 'spring-boot-starter-data-elasticsearch' is added  for Spring Data ElasticSearch application.
 
-```
+   
 
 dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
@@ -17,10 +17,10 @@ dependencies {
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
 }
 
-```
-1. The sample data model, that is going to be pushed is created as below. The Elastic indecx is configured through application configurations 
+   
+The sample data model, that is going to be pushed is created as below. The Elastic indecx is configured through application configurations 
 
-```
+   
 
 @Document(indexName = "${application.index.name}")
 public class Response {
@@ -82,22 +82,22 @@ public class Response {
     }
 }
 
-```
+   
 
 Application configuration can be configured for elastic server and elastic index
 
-```
+   
 elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/
 index.name==<firstname-lastname>
 
-```
+   
 
 
 # Sample Data Ingestion
 
 The responseRepository is extended from ElasticSearchRepository 
 
-```
+   
 @Repository
 public interface ResponseRepository extends ElasticsearchRepository<Response, String> {
 
@@ -105,19 +105,19 @@ public interface ResponseRepository extends ElasticsearchRepository<Response, St
 
 }
 
-```
+   
 
 The sample data is saved with responseRepository
-    ```
+       
     responseRepository.saveAll(responses);
     
-    ```
+       
 
 # Querying the Elastic Index
 
-ElasticsearchRespository - High level.  Easy to use for simpler operations.
+ElasticsearchRespository - High level.  Easy to use for simpler operations. 
     
-    ```
+       
 
     @GetMapping("/survey/{surveyId}")
     public List<Response> getResponsesForSurveyId(@PathVariable String surveyId) {
@@ -125,12 +125,12 @@ ElasticsearchRespository - High level.  Easy to use for simpler operations.
         return responseRepository.findBySurveyId(surveyId, page).toList();
     }
     
-    ```
+       
     
     
  ElasticsearchRestTemplate - Provides range query for searching range of values.
 
-    ```
+       
 
         Query searchQuery = new NativeSearchQueryBuilder().withQuery(
                 QueryBuilders.rangeQuery("rating")
@@ -138,43 +138,43 @@ ElasticsearchRespository - High level.  Easy to use for simpler operations.
                         .lte(high)
         ).build();
     
-    ```
+       
     
 
 
 ## Ready to Build the Application 
 
-1. Edit the Configuration properties to configure the elastic index 
-     -  `edit the properties in the  /src/main/resource/application.propoerlties`
-     -  ` elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/`
-     -  ` index.name=<firstname-lastname>`    
+ Edit the Configuration properties to configure the elastic index 
+     -   edit the properties in the  /src/main/resource/application.properties 
+     -    elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/ 
+     -    index.name=<firstname-lastname>     
   
-1. Clean build and create Boot Jar
+ Clean build and create Boot Jar
   
-     - `./gradlew clean build`
-     - `./gradlew bootJar`
+     -  ./gradlew clean build 
+     -  ./gradlew bootJar 
   
-1. Build the Spring Boot Jar
-      - `./gradlew bootJar`
+ Build the Spring Boot Jar
+      -  ./gradlew bootJar 
   
 ## Run the Jar
   
-1. Run Jar 
-    - `java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar `  
+ Run Jar 
+    -  java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar    
   
 ## Load the sample data and query the elastic index  
   
-1. To load the sample data into the elastic index, call the following end point from the service
-   - `curl localhost:8080/load`
+ To load the sample data into the elastic index, call the following end point from the service
+   -  curl localhost:8080/load 
 
-1. To query the Elastic index by a given survey number 
-   - `curl localhost:8080/suvey/102`
+ To query the Elastic index by a given survey number 
+   -  curl localhost:8080/suvey/102 
 
-1. To Find the responses between the ratings 1 and 10
-   - `curl localhost:8080/rating/1/10`
+ To Find the responses between the ratings 1 and 10
+   -  curl localhost:8080/rating/1/10 
 
-1. To find the responses by text search 
-   - `curl localhost:8080/text/handler`
+ To find the responses by text search 
+   -  curl localhost:8080/text/handler 
 
 
   
