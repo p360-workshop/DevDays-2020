@@ -4,7 +4,7 @@ metadata:
   name: demo-ingress
 spec:
   rules:
-  - host: manish-rajkarnikar.p360.providerdataplatform.net
+  - host: <firstname-lastname>.p360.providerdataplatform.net
     http:
       paths:
       - backend:
