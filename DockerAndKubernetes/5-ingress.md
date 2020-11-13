@@ -69,3 +69,7 @@ Replace <firstname-lastname> in demo-ing.yaml with your firstname and lastname
 ## Validation
 
 Open a browser and go https://<firstname-lastname>.p360.providerdataplatform.net/
+
+## Cleanup
+
+`kubectl delete -f demo-ing.yaml`

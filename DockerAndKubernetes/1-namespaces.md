@@ -44,22 +44,7 @@ We will create namespace with name as our msid so that we don't step over each o
 `kubectl create namespace <firstname-lastname>`
 
 
-## Create test namespace using yaml:
-You can create a YAML file and apply it, just like any other Kubernetes resource.
 
-Look at the file `test-namespace.yaml`
-
-
-```
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: <firstname-lastname>
-```
-
-
-
-`kubectl apply -f test-namespace.yaml`
 
 ## List all namespaces:
 
@@ -78,10 +63,25 @@ or
 Check that the `<firstname-lastname>` namespace has been successfully deleted:
 
 `kubectl get namespaces`
+## Create test namespace using yaml:
+We are  going to re-create   ```<firstname-lastname>``` namespace as we will use it later in this course. But this time we will create it using yaml file.
 
-We are  going to re-create   ```<firstname-lastname>``` namespace as we will use it later in this course.
+You can create a YAML file and apply it, just like any other Kubernetes resource.
+
+Look at the file `test-namespace.yaml`
+
+
+```
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: <firstname-lastname>
+```
+
+
 
 `kubectl apply -f test-namespace.yaml`
+
 
 ## Set your default namespace:
 
