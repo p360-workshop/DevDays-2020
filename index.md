@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+## Introduction
+In this workshop, we will go cover basics of following topics
+1. [Spring boot](SpringBoot)
+2. Docker and Kubernetes
+3. Kafka and Kafka Streams
+4. Elasticsearch 
 
-You can use the [editor on GitHub](https://github.com/p360-workshop/DevDays-2020/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Code 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This workshop is available at 
 
-### Markdown
+https://github.com/p360-workshop/DevDays-2020
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+## Environment
 
-# Header 1
-## Header 2
-### Header 3
+We have setup VMs for all attendees in AWS with all the tools required for this workshop. 
 
-- Bulleted
-- List
+## How to access the environment
 
-1. Numbered
-2. List
+Use this url to access your environment
 
-**Bold** and _Italic_ and `Code` text
+`https://<firstname-lastname>.hue.providerdataplatform.net`
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Once the IDE opens; you can open the terminal  
 
-### Jekyll Themes
+Top left menu button> Terminal > New Terminal
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/p360-workshop/DevDays-2020/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Note
+This env is available for the days of the workshop after which the env will be brought down. Github location will be available for longer period. 
