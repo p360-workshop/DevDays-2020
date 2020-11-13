@@ -1,4 +1,6 @@
-## Overview
+## Deployment
+
+## Concept
 
 The Kubernetes documentation states that a Deployment allows you to:
 
@@ -12,7 +14,7 @@ Kubernetes deployments manage stateless services running in your cluster (as opp
 
 
 
-![image](assets/deployment-high-level.png)
+![image](lab-content/deployment-high-level.png)
 
 
 ## What will you need
