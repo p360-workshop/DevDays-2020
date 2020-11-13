@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Lab 1 - Discover</title>
+<title>Lab 4 - Visualize - Create</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -441,54 +441,54 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_lab_1_discover">Lab 1 - Discover</h2>
+<h2 id="_lab_4_visualize_create">Lab 4 - Visualize - Create</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Launch <a href="https://kibana.workshop.providerdataplatform.net" class="bare">https://kibana.workshop.providerdataplatform.net</a> on the browser.</p>
+<p>Click on the Visualize icon in the left menu.</p>
 </li>
 <li>
-<p>Expand the left most menu (beside the Elastic Image)</p>
+<p>Click the blue "Create Visualization" button.</p>
 </li>
 <li>
-<p>Find "Discover" option.  It looks like a compass.  Click it.</p>
+<p>Choose Pie chart (first column, fourth row)</p>
 </li>
 <li>
-<p>By default, it queries and shows data from the last 15 minutes.</p>
+<p>Choose "kibana_sample_data_ecommerce" (this is the index we want the data to come from)</p>
 </li>
 <li>
-<p>Change the query date range in the upper right to something larger. (e.g. 24 Hours Ago).  Then click "Update".</p>
+<p>On right column click "Add" under Buckets, then "Split slices".</p>
 </li>
 <li>
-<p>More data should display in the results.</p>
+<p>Under Aggregation select "Terms"</p>
 </li>
 <li>
-<p>Explore the data by clicking on the little arrow next to the date in the results.</p>
+<p>Under Field choose "day_of_week"</p>
 </li>
 <li>
-<p>Notice all of the data elements that are indexed.</p>
+<p>Under Order set size to 7.</p>
 </li>
 <li>
-<p>Note an "order_id" value (e.g. 579574)</p>
+<p>Click update button on bottom right.  What is the pie chart showing?</p>
 </li>
 <li>
-<p>Note a "user" value (e.g. jackson)</p>
+<p>Add a second slice to find top 2 cities with orders for each day.</p>
 </li>
 <li>
-<p>Note a "geoip.city_name" (e.g. Los Angeles)</p>
+<p>Are they the same cities each day?</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><a href="02-lab.html">Lab 2 - Search</a></p>
+<p><a href="05-lab.html">Lab 5 - Visualize - Create</a></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 12:36:50 UTC
+Last updated 2020-11-13 04:35:25 UTC
 </div>
 </div>
 </body>

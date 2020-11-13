@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Lab 1 - Discover</title>
+<title>Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,57 +438,319 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
+<h1>Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_lab_1_discover">Lab 1 - Discover</h2>
+<h2 id="_code">Code</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Launch <a href="https://kibana.workshop.providerdataplatform.net" class="bare">https://kibana.workshop.providerdataplatform.net</a> on the browser.</p>
+<p>launch <a href="https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/" class="bare">https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/</a></p>
 </li>
 <li>
-<p>Expand the left most menu (beside the Elastic Image)</p>
+<p>if terminal is not already available on bottom left window, Enable the terminal window by clicking the left top most button</p>
 </li>
 <li>
-<p>Find "Discover" option.  It looks like a compass.  Click it.</p>
-</li>
-<li>
-<p>By default, it queries and shows data from the last 15 minutes.</p>
-</li>
-<li>
-<p>Change the query date range in the upper right to something larger. (e.g. 24 Hours Ago).  Then click "Update".</p>
-</li>
-<li>
-<p>More data should display in the results.</p>
-</li>
-<li>
-<p>Explore the data by clicking on the little arrow next to the date in the results.</p>
-</li>
-<li>
-<p>Notice all of the data elements that are indexed.</p>
-</li>
-<li>
-<p>Note an "order_id" value (e.g. 579574)</p>
-</li>
-<li>
-<p>Note a "user" value (e.g. jackson)</p>
-</li>
-<li>
-<p>Note a "geoip.city_name" (e.g. Los Angeles)</p>
+<p>The dependency 'spring-boot-starter-data-elasticsearch' is added  for Spring Data ElasticSearch application.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><a href="02-lab.html">Lab 2 - Search</a></p>
+<p>dependencies {
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+}</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The sample data model, that is going to be pushed is created as below. The Elastic indecx is configured through application configurations</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>@Document(indexName = "${application.index.name}")
+public class Response {</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>@Id
+private String responseId;
+private String surveyId;
+private Integer questionNumber;
+private Integer rating;
+private String responseText;
+private String user;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public String getResponseId() {
+    return responseId;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setResponseId(String responseId) {
+    this.responseId = responseId;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public String getSurveyId() {
+    return surveyId;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setSurveyId(String surveyId) {
+    this.surveyId = surveyId;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public Integer getQuestionNumber() {
+    return questionNumber;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setQuestionNumber(Integer questionNumber) {
+    this.questionNumber = questionNumber;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public Integer getRating() {
+    return rating;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setRating(Integer rating) {
+    this.rating = rating;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public String getResponseText() {
+    return responseText;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void setResponseText(String responseText) {
+    this.responseText = responseText;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public String getUser() {
+    return user;
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    public void setUser(String user) {
+        this.user = user;
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Application configuration can be configured for elastic server and elastic index</p>
+</div>
+<div class="paragraph">
+<p>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/
+index.name==&lt;firstname-lastname&gt;</p>
+</div>
+</div>
+</div>
+<h1 id="_sample_data_ingestion" class="sect0">Sample Data Ingestion</h1>
+<div class="paragraph">
+<p>The responseRepository is extended from ElasticSearchRepository</p>
+</div>
+<div class="paragraph">
+<p>@Repository
+public interface ResponseRepository extends ElasticsearchRepository&lt;Response, String&gt; {</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Page&lt;Response&gt; findBySurveyId(String surveyId, Pageable pageable);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>}</p>
+</div>
+<div class="paragraph">
+<p>The sample data is saved with responseRepository</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>responseRepository.saveAll(responses);</pre>
+</div>
+</div>
+<h1 id="_querying_the_elastic_index" class="sect0">Querying the Elastic Index</h1>
+<div class="paragraph">
+<p>ElasticsearchRespository - High level.  Easy to use for simpler operations.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>@GetMapping("/survey/{surveyId}")
+public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyId) {
+    PageRequest page = PageRequest.of(0, 10);
+    return responseRepository.findBySurveyId(surveyId, page).toList();
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ElasticsearchRestTemplate - Provides range query for searching range of values.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Query searchQuery = new NativeSearchQueryBuilder().withQuery(
+        QueryBuilders.rangeQuery("rating")
+                .gte(low)
+                .lte(high)
+).build();</pre>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ready_to_build_the_application">Ready to Build the Application</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Edit the Configuration properties to configure the elastic index</p>
+<div class="ulist">
+<ul>
+<li>
+<p>edit the properties in the  /src/main/resource/application.properties</p>
+</li>
+<li>
+<p>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/</p>
+</li>
+<li>
+<p>index.name=&lt;firstname-lastname&gt;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Clean build and create Boot Jar</p>
+<div class="ulist">
+<ul>
+<li>
+<p>./gradlew clean build</p>
+</li>
+<li>
+<p>./gradlew bootJar</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Build the Spring Boot Jar</p>
+<div class="ulist">
+<ul>
+<li>
+<p>./gradlew bootJar</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run_the_jar">Run the Jar</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run Jar</p>
+<div class="ulist">
+<ul>
+<li>
+<p>java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_load_the_sample_data_and_query_the_elastic_index">Load the sample data and query the elastic index</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To load the sample data into the elastic index, call the following end point from the service</p>
+<div class="ulist">
+<ul>
+<li>
+<p>curl localhost:8080/load</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To query the Elastic index by a given survey number</p>
+<div class="ulist">
+<ul>
+<li>
+<p>curl localhost:8080/survey/102</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To Find the responses between the ratings 1 and 10</p>
+<div class="ulist">
+<ul>
+<li>
+<p>curl localhost:8080/rating/1/10</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To find the responses by text search</p>
+<div class="ulist">
+<ul>
+<li>
+<p>curl localhost:8080/text/handler</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 12:36:50 UTC
+Last updated 2020-11-13 04:51:39 UTC
 </div>
 </div>
 </body>
