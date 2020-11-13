@@ -1,0 +1,164 @@
+:spring_boot_version: 2.3.2.RELEASE
+:RestTemplate: http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html
+:HttpMessageConverter: http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/http/converter/HttpMessageConverter.html
+:toc:
+:icons: font
+:source-highlighter: prettify
+:project_id: gs-consuming-rest
+
+This guide walks you through the process of creating an application that consumes a
+RESTful web service.
+
+== What You Will Build
+
+You will build an application that uses Spring's `RestTemplate` to retrieve a random
+Spring Boot quotation at https://gturnquist-quoters.cfapps.io/api/random.
+
+[[scratch]]
+== Start by checking out the lab code
+
+Check out https://github.com/siavash1986/gs-consuming-rest[gs-consuming-rest] repository to your local development environment and open initial folder
+
+The following listing shows the `build.gradle` file located in the initial folder:
+
+====
+[src,gradle]
+----
+plugins {
+	id 'org.springframework.boot' version '2.1.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+----
+====
+
+These build files can be this simple because `spring-boot-starter-web` includes everything
+you need to build a web application, including the Jackson classes you need to work with
+JSON.
+
+[[initial]]
+== Fetching a REST Resource
+
+With project setup complete, you can create a simple application that consumes a RESTful
+service.
+
+A RESTful service has been stood up at https://gturnquist-quoters.cfapps.io/api/random.
+It randomly fetches quotations about Spring Boot and returns them as JSON documents.
+
+If you request that URL through a web browser or curl, you receive a JSON document
+that looks something like this:
+
+====
+[source,java,tabsize=2script]
+----
+{
+   type: "success",
+   value: {
+      id: 10,
+      quote: "Really loving Spring Boot, makes stand alone Spring apps easy."
+   }
+}
+----
+====
+
+That is easy enough but not terribly useful when fetched through a browser or through curl.
+
+A more useful way to consume a REST web service is programmatically. To help you with that
+task, Spring provides a convenient template class called {RestTemplate}[`RestTemplate`].
+`RestTemplate` makes interacting with most RESTful services a one-line incantation. And it
+can even bind that data to custom domain types.
+
+First, you need to create a domain class to contain the data that you need. The following
+listing shows the `Quote` class, which you can use as your domain class:
+
+`src/main/java/com/example/consumingrest/Quote.java`
+[source,java,tabsize=2]
+----
+include::complete/src/main/java/com/example/consumingrest/Quote.java[]
+----
+
+This simple Java class has a handful of properties and matching
+getter methods. It is annotated with `@JsonIgnoreProperties` from the Jackson JSON
+processing library to indicate that any properties not bound in this type should be ignored.
+
+To directly bind your data to your custom types, you need to specify the
+variable name to be exactly the same as the key in the JSON document returned from the API.
+In case your variable name and key in JSON doc do not match, you can use `@JsonProperty`
+annotation to specify the exact key of the JSON document. (This example matches each
+variable name to a JSON key, so you do not need that annotation here.)
+
+You also need an additional class, to embed the inner quotation itself. The `Value` class
+fills that need and is shown in the following listing (at
+`src/main/java/com/example/consumingrest/Value.java`):
+
+====
+[source,java,tabsize=2]
+----
+include::complete/src/main/java/com/example/consumingrest/Value.java[]
+----
+====
+
+This uses the same annotations but maps onto other data fields.
+
+== Finishing the Application
+
+The Initalizr creates a class with a `main()` method. The following listing shows the
+class the Initializr creates (at
+`src/main/java/com/example/consumingrest/ConsumingRestApplication.java`):
+
+====
+[source,java]
+----
+include::initial/src/main/java/com/example/consumingrest/ConsumingRestApplication.java[]
+----
+====
+
+Now you need to add a few other things to the `ConsumingRestApplication` class to get it to
+show quotations from our RESTful source. You need to add:
+
+* A logger, to send output to the log (the console, in this example).
+* A `RestTemplate`, which uses the Jackson JSON processing library to process the incoming
+data.
+* A `CommandLineRunner` that runs the `RestTemplate` (and, consequently, fetches our
+quotation) on startup.
+
+The following listing shows the finished `ConsumingRestApplication` class (at
+`src/main/java/com/example/consumingrest/ConsumingRestApplication.java`):
+
+====
+[source,java]
+----
+include::complete/src/main/java/com/example/consumingrest/ConsumingRestApplication.java[]
+----
+====
+
+== Running the Application
+
+You should see output similar to the following but with a random quotation:
+
+....
+2019-08-22 14:06:46.506  INFO 42940 --- [           main] c.e.c.ConsumingRestApplication           : Quote{type='success', value=Value{id=1, quote='Working with Spring Boot is like pair-programming with the Spring developers.'}}
+....
+
+NOTE: If you see an error that reads, `Could not extract response: no suitable
+HttpMessageConverter found for response type [class com.example.consumingrest.Quote]`, it
+is possible that you are in an environment that cannot connect to the backend service
+(which sends JSON if you can reach it). Maybe you are behind a corporate proxy. Try
+setting the `http.proxyHost` and `http.proxyPort` system properties to values appropriate
+for your environment.
+
+== Summary
+Congratulations! You have just developed a simple REST client by using Spring Boot.
