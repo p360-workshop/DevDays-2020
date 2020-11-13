@@ -1,4 +1,5 @@
 ## Lab 4 - Visualize - Create
+
 1. Click on the Visualize icon in the left menu.
 1. Click the blue "Create Visualization" button.
 1. Choose Pie chart (first column, fourth row)
