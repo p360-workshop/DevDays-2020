@@ -590,12 +590,25 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 <h2 id="_ready_to_build_the_application">Ready to Build the Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Edit the Configuration properties to configure the elastic index
-The properties is : /src/main/resource/application.properties</p>
+<p>Get the code from <a href="https://github.com/raghaj/elasticsearch-demo" class="bare">https://github.com/raghaj/elasticsearch-demo</a></p>
+</div>
+<hr>
+<div class="literalblock">
+<div class="content">
+<pre>git clone https://github.com/raghaj/elasticsearch-demo</pre>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Edit the Configuration properties to configure the elastic index</p>
+</div>
+<div class="paragraph">
+<p>The properties is : /src/main/resource/application.properties</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/
+
 index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 </div>
@@ -639,7 +652,11 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>curl localhost:8080/load</code></pre>
+<pre class="highlight"><code>curl localhost:8080/load
+
+If the request is successful, We should get response as
+
+"responses loaded!"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -647,7 +664,18 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>curl localhost:8080/suvey/102</code></pre>
+<pre class="highlight"><code>curl localhost:8080/survey/102
+
+if the request is successful, we should get response in the format similar to below
+
+    {
+        "responseId": "e2422ef8-dfe6-489b-90b0-293ec9acef54",
+        "surveyId": "101",
+        "questionNumber": 0,
+        "rating": 3,
+        "responseText": "trailer analytic style predatory triathlon mythology enticing fax scoreboard brace copper airliner win coveralls food programmer acting programmer",
+        "user": "xxx"
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -655,7 +683,18 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>curl localhost:8080/rating/1/10</code></pre>
+<pre class="highlight"><code>curl localhost:8080/rating/1/10
+
+if request is successful, we should get response similar to below
+
+    {
+        "responseId": "4aa2b234-5599-4438-85c4-be329c735253",
+        "surveyId": "100",
+        "questionNumber": 0,
+        "rating": 4,
+        "responseText": "handler grimace fountain style hoe handler win smear pity washing",
+        "user": "steve"
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -663,7 +702,28 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>curl localhost:8080/text/handler</code></pre>
+<pre class="highlight"><code>curl localhost:8080/text/handler
+
+if request is successful, we should see response similar to below
+
+[
+    {
+        "responseId": "4aa2b234-5599-4438-85c4-be329c735253",
+        "surveyId": "100",
+        "questionNumber": 0,
+        "rating": 4,
+        "responseText": "handler grimace fountain style hoe handler win smear pity washing",
+        "user": "steve"
+    },
+    {
+        "responseId": "cf932ed9-cf88-4116-afe3-6ad2710ef4ce",
+        "surveyId": "100",
+        "questionNumber": 1,
+        "rating": 7,
+        "responseText": "dash embrace win programmer handler swollen",
+        "user": "bruce"
+    }
+]</code></pre>
 </div>
 </div>
 </div>
@@ -671,7 +731,7 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 12:49:23 UTC
+Last updated 2020-11-13 14:05:19 UTC
 </div>
 </div>
 </body>
