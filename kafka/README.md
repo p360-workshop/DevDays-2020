@@ -24,7 +24,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
 
 ### Creating & executing Kafka Docker image
 
-  - Login to your vm (via [gucamole login](https://hue.providerdataplatform.net/guacamole/)) using your username & password.
+  - Launch you IDE at `https://<firstname-lastname>.hue.providerdataplatform.net/`. Once the IDE opens; click Top left menu button> Terminal > New Terminal
   - Execute below commands to download codebase repo to create & execute Kafka docker image (Please make sure to replace <msid> token)
     ```sh
     $ sudo su
@@ -37,7 +37,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
 ### Setting up prerequisite kafka topics for execution
 
  - Kafka Streaming application would internally require input/optput & internal topics to perform realtime streaming aggregation.
- - In Another brower terminal, Login to your vm (via [gucamole login](https://hue.providerdataplatform.net/guacamole/)) using your username & password.
+ - Launch you IDE at `https://<firstname-lastname>.hue.providerdataplatform.net/`. Once the IDE opens; click Top left menu button> Terminal > New Terminal
  - Execute below commands to setup Kafka topics (Please make sure to replace <msid> token)
     ```sh
     $ sudo su
@@ -61,7 +61,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
 ### Running Kafka Streaming application to perform real time aggregation & store data into output kafka topic
 
  - The streaming application jar has been embeded into the docker image that was build in earlier steps.
- - In Another brower terminal, Login to your vm (via [gucamole login](https://hue.providerdataplatform.net/guacamole/)) using your username & password.
+ - Open another terminal by clicking Top left menu button> Terminal > New Terminal
  - Execute below commands to run the streaming applications which will facilitate to generate output
     ```sh
     $ sudo su
@@ -72,7 +72,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
 ### Running Kafka Producer application to generate real time data to valdiate the application
 
  - In real word the producer itself could be an application which would generate the data to but in order to showcase in demo purpose, kafka console producer would be used to generate sample words
- - In Another brower terminal, Login to your vm (via [gucamole login](https://hue.providerdataplatform.net/guacamole/)) using your username & password.
+ - Open another terminal by clicking Top left menu button> Terminal > New Terminal
  - Execute below commands to run the streaming applications which will facilitate to generate output
     ```sh
     $ sudo su
