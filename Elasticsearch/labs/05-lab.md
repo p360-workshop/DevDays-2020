@@ -108,10 +108,10 @@ public interface ResponseRepository extends ElasticsearchRepository<Response, St
 ```
 
 The sample data is saved with responseRepository
-```
-responseRepository.saveAll(responses);
-
-```
+    ```
+    responseRepository.saveAll(responses);
+    
+    ```
 
 # Querying the Elastic Index
 
@@ -145,24 +145,24 @@ ElasticsearchRespository - High level.  Easy to use for simpler operations.
 ## Ready to Build the Application 
 
 1. Edit the Configuration properties to configure the elastic index 
-  -  `edit the properties in the  /src/main/resource/application.propoerlties`
-  -  ` elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/`
-  -  ` index.name=<firstname-lastname>`    
+     -  `edit the properties in the  /src/main/resource/application.propoerlties`
+     -  ` elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/`
+     -  ` index.name=<firstname-lastname>`    
   
 1. Clean build and create Boot Jar
   
-  - `./gradlew clean build`
-  - `./gradlew bootJar`
+     - `./gradlew clean build`
+     - `./gradlew bootJar`
   
 1. Build the Spring Boot Jar
-  - `./gradlew bootJar`
+      - `./gradlew bootJar`
   
 ## Run the Jar
   
 1. Run Jar 
-  - `java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar `  
+    - `java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar `  
   
-## Load teh sample data and query the elastic index  
+## Load the sample data and query the elastic index  
   
 1. To load the sample data into the elastic index, call the following end point from the service
    - `curl localhost:8080/load`
@@ -171,10 +171,10 @@ ElasticsearchRespository - High level.  Easy to use for simpler operations.
    - `curl localhost:8080/suvey/102`
 
 1. To Find the responses between the ratings 1 and 10
-    `curl localhost:8080/rating/1/10`
+   - `curl localhost:8080/rating/1/10`
 
 1. To find the responses by text search 
-    `curl localhost:8080/text/handler`
+   - `curl localhost:8080/text/handler`
 
 
   
