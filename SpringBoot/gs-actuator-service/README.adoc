@@ -1,0 +1,241 @@
+:toc:
+:gs-rest-service: link:/guides/gs/rest-service
+:spring_version: current
+:icons: font
+:source-highlighter: prettify
+:project_id: gs-actuator-service
+
+https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready[Spring Boot Actuator]
+is a sub-project of Spring Boot. It adds several production grade services to your
+application with little effort on your part. In this guide, you will build an application
+and then see how to add these services.
+
+== What You Will build
+
+This guide takes you through creating a "`Hello, world`" RESTful web service with Spring
+Boot Actuator. You will build a service that accepts the following HTTP GET request:
+
+====
+[source,sh]
+----
+$ curl http://localhost:9000/hello-world
+----
+====
+
+It responds with the following JSON:
+
+====
+[source,json]
+----
+{"id":1,"content":"Hello, World!"}
+----
+====
+
+There are also many features added to your application for managing the service in a
+production (or other) environment. The business functionality of the service you build is
+the same as in {gs-rest-service}[Building a RESTful Web Service]. You need need not use
+that guide to take advantage of this one, although it might be interesting to compare the
+results.
+
+== Start by checking out the lab code
+
+Check out https://github.com/siavash1986/gs-actuator-service[gs-actuator-service] repository to your local development environment and open initial folder
+
+The following listing shows the build.gradle file located in the initial folder:
+
+====
+[src,groovy]
+----
+include::complete/build.gradle[]
+----
+====
+
+== Run the Empty Service
+
+The Spring Initializr creates an empty application that you can use to get started. The
+following example (from
+`src/main/java/com/example/actuatorservice/ActuatorServiceApplication` in the `initial`
+directory) shows the class created by the Spring Initializr:
+
+====
+[source,java,tabsize=2]
+----
+include::initial/src/main/java/com/example/actuatorservice/ActuatorServiceApplication.java[]
+----
+====
+
+The `@SpringBootApplication` annotation provides a load of defaults (like the embedded
+servlet container), depending on the contents of your classpath and other things. It also
+turns on Spring MVC's `@EnableWebMvc` annotation, which activates web endpoints.
+
+There are no endpoints defined in this application, but there is enough to launch things
+and see some of Actuator's features. The `SpringApplication.run()` command knows how to
+launch the web application. All you need to do is run the following command:
+
+====
+[source,bash,subs="attributes"]
+----
+$ ./gradlew clean build && java -jar build/libs/{project_id}-0.1.0.jar
+----
+====
+
+You have yet to write any code, so what is happening? To see the answer, wait for the
+server to start, open another terminal, and try the following command (shown with its
+output):
+
+====
+[source,bash]
+----
+$ curl localhost:8080
+{"timestamp":1384788106983,"error":"Not Found","status":404,"message":""}
+----
+====
+
+The output of the preceding command indicates that the server is running but that you have
+not defined any business endpoints yet.
+
+====
+[source,bash]
+----
+$ curl localhost:8080/actuator/health
+{"status":"UP"}
+----
+====
+
+The status is `UP`, so the actuator service is running.
+
+See Spring Boot's
+https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-actuator[Actuator Project]
+for more details.
+
+[[initial]]
+== Create a Representation Class
+
+First, you need to give some thought to what your API will look like.
+
+You want to handle GET requests for `/hello-world`, optionally with a name query
+parameter. In response to such a request, you want to send back JSON, representing a
+greeting, that looks something like the following:
+
+====
+[source,json]
+----
+{
+    "id": 1,
+    "content": "Hello, World!"
+}
+----
+====
+
+The `id` field is a unique identifier for the greeting, and `content` contains the textual
+representation of the greeting.
+
+To model the greeting representation, create a representation class. The following listing
+(from `src/main/java/com/example/actuatorservice/Greeting.java`) shows the `Greeting`
+class:
+
+====
+[source,java,tabsize=2]
+----
+include::complete/src/main/java/com/example/actuatorservice/Greeting.java[]
+----
+====
+
+Now that you need to create the endpoint controller that will serve the representation
+class.
+
+== Create a Resource Controller
+
+In Spring, REST endpoints are Spring MVC controllers. The following Spring MVC controller
+(from `src/main/java/com/example/actuatorservice/HelloWorldController.java`) handles a GET
+request for the `/hello-world` endpoint and returns the `Greeting` resource:
+
+====
+[source,java,tabsize=2]
+----
+include::complete/src/main/java/com/example/actuatorservice/HelloWorldController.java[]
+----
+====
+
+The key difference between a human-facing controller and a REST endpoint controller is in
+how the response is created. Rather than rely on a view (such as JSP) to render model data
+in HTML, an endpoint controller returns the data to be written directly to the body of the
+response.
+
+The https://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/web/bind/annotation/ResponseBody.html[`@ResponseBody`]
+annotation tells Spring MVC not to render a model into a view but, rather, to write the
+returned object into the response body. It does so by using one of Spring's message
+converters. Because Jackson 2 is in the classpath,
+https://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/http/converter/json/MappingJackson2HttpMessageConverter.html[`MappingJackson2HttpMessageConverter`]
+will handle the conversion of a `Greeting` object to JSON if the request's `Accept` header
+specifies that JSON should be returned.
+
+== Run the Application
+
+You can run the application from a custom main class or directly from one of the
+configuration classes. For this simple example, you can use the `SpringApplication` helper
+class. Note that this is the application class that the Spring Initializr created for you,
+and you need not even modify it for it to work for this simple application. The following
+listing (from `src/main/java/com/example/actuatorservice/HelloWorldApplication.java`)
+shows the application class:
+
+====
+[source,java,tabsize=2]
+----
+include::complete/src/main/java/com/example/actuatorservice/HelloWorldApplication.java[]
+----
+====
+
+Once the service is running (because you ran `spring-boot:run` in a terminal), you can test it by running the following command in a separate terminal:
+
+====
+[source,bash]
+----
+$ curl localhost:8080/hello-world
+{"id":1,"content":"Hello, Stranger!"}
+----
+====
+
+== Switch to a Different Server Port
+
+Spring Boot Actuator defaults to running on port 8080. By adding an
+`application.properties` file, you can override that setting. The following listing (from
+`src/main/resources/application.properties`)shows that file with the necessary changes:
+
+====
+[source,properties]
+----
+include::complete/src/main/resources/application.properties[]
+----
+====
+
+Run the server again by running the following command in a terminal:
+
+====
+[subs="attributes"]
+----
+$ ./gradlew clean build && java -jar build/libs/{project_id}-0.1.0.jar
+----
+====
+
+The service now starts on port 9000.
+
+You can test that it is working on port 9000 by running the following commands in a
+terminal:
+
+====
+[source,bash]
+----
+$ curl localhost:8080/hello-world
+curl: (52) Empty reply from server
+$ curl localhost:9000/hello-world
+{"id":1,"content":"Hello, Stranger!"}
+$ curl localhost:9001/actuator/health
+{"status":"UP"}
+----
+====
+
+== Summary
+
+Congratulations! You have just developed a simple RESTful service by using Spring, and you
+added some useful built-in services with Spring Boot Actuator.
