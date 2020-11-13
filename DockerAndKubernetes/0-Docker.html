@@ -536,6 +536,12 @@ CMD ["nginx"]</code></pre>
 <p><code>docker images</code></p>
 </div>
 <div class="paragraph">
+<p>Authenticate to ECR so that you can push image</p>
+</div>
+<div class="paragraph">
+<p><code>docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) <a href="https://840891909344.dkr.ecr.us-east-1.amazonaws.com" class="bare">https://840891909344.dkr.ecr.us-east-1.amazonaws.com</a></code></p>
+</div>
+<div class="paragraph">
 <p>To push the image that you just built , run the following command:</p>
 </div>
 <div class="paragraph">
@@ -602,7 +608,7 @@ CMD ["nginx"]</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 03:42:50 UTC
+Last updated 2020-11-13 05:43:03 UTC
 </div>
 </div>
 </body>

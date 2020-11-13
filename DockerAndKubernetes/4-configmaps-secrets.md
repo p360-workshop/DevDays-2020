@@ -98,3 +98,11 @@ kubectl logs -c nginx secure-monolith
 ## Summary
 
 Secrets and Configmaps allow you to store application secrets and configuration data, then expose them to Pods at runtime. In this lab you learned how to expose Secrets and Configmaps to Pods using volume mounts. You also learned how to run multiple containers in a single Pod.
+
+
+## Cleanup
+
+```
+kubectl delete -f pods/secure-monolith.yaml
+kubectl delete configmaps nginx-proxy-conf
+```

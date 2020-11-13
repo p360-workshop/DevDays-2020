@@ -513,28 +513,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_test_namespace_using_yaml">Create test namespace using yaml:</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can create a YAML file and apply it, just like any other Kubernetes resource.</p>
-</div>
-<div class="paragraph">
-<p>Look at the file <code>test-namespace.yaml</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>kind: Namespace
-apiVersion: v1
-metadata:
-  name: &lt;firstname-lastname&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>kubectl apply -f test-namespace.yaml</code></p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_list_all_namespaces">List all namespaces:</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -561,10 +539,23 @@ metadata:
 <p>Check that the <code>&lt;firstname-lastname&gt;</code> namespace has been successfully deleted:</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl get namespaces</code></p>
+<p><code>kubectl get namespaces</code>
+## Create test namespace using yaml:
+We are  going to re-create   <code><code>&lt;firstname-lastname&gt;</code></code> namespace as we will use it later in this course. But this time we will create it using yaml file.</p>
 </div>
 <div class="paragraph">
-<p>We are  going to re-create   <code><code>&lt;firstname-lastname&gt;</code></code> namespace as we will use it later in this course.</p>
+<p>You can create a YAML file and apply it, just like any other Kubernetes resource.</p>
+</div>
+<div class="paragraph">
+<p>Look at the file <code>test-namespace.yaml</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>kind: Namespace
+apiVersion: v1
+metadata:
+  name: &lt;firstname-lastname&gt;</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p><code>kubectl apply -f test-namespace.yaml</code></p>
@@ -585,7 +576,7 @@ metadata:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 04:27:12 UTC
+Last updated 2020-11-13 05:47:08 UTC
 </div>
 </div>
 </body>

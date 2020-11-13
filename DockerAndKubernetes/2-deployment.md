@@ -195,3 +195,11 @@ Once the deployment has been updated, check the pods:
 `kubectl get po -n <firstname-lastname>`
 
 You should see 10 nginx pods now. You've successfully just scaled your deployment. Equally, to scale down your deployment, simply change the number of replicas and update the deployment again.
+
+
+## Cleanup
+
+Run this command to delete the deployment
+
+
+`kubectl create -f dep-manifest.yaml -n <firstname-lastname>`
