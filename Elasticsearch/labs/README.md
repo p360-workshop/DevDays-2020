@@ -17,7 +17,7 @@ The local Elastic can be access : http://localhost:9200
 
 [Lab 4 - Visualize - Create](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/04-lab.md)
 
-[Lab 5 - Hands On Demo](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/05-lab.md)
+[Lab 5 - Spring Boot Data Ingestion and Data querying from Elastic through API ](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/05-lab.md)
 
 
 
