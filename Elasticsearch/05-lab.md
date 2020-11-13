@@ -149,6 +149,13 @@ Query searchQuery = new NativeSearchQueryBuilder().withQuery(
       
 ## Ready to Build the Application 
 
+Get the code from https://github.com/raghaj/elasticsearch-demo
+
+'''
+  git clone https://github.com/raghaj/elasticsearch-demo
+  
+'''
+
 Edit the Configuration properties to configure the elastic index 
 
 The properties is : /src/main/resource/application.properties 
@@ -193,12 +200,28 @@ To load the sample data into the elastic index, call the following end point fro
 ```
 curl localhost:8080/load 
 
+If the request is successful, We should get response as 
+
+"responses loaded!"
+
 ```
 
 To query the Elastic index by a given survey number 
 
 ```
-curl localhost:8080/suvey/102 
+curl localhost:8080/survey/102 
+
+if the request is successful, we should get response in the format similar to below
+
+    {
+        "responseId": "e2422ef8-dfe6-489b-90b0-293ec9acef54",
+        "surveyId": "101",
+        "questionNumber": 0,
+        "rating": 3,
+        "responseText": "trailer analytic style predatory triathlon mythology enticing fax scoreboard brace copper airliner win coveralls food programmer acting programmer",
+        "user": "xxx"
+    }
+       
 
 ```
 
@@ -207,12 +230,45 @@ To Find the responses between the ratings 1 and 10
 ```
 curl localhost:8080/rating/1/10 
 
+if request is successful, we should get response similar to below
+
+    {
+        "responseId": "4aa2b234-5599-4438-85c4-be329c735253",
+        "surveyId": "100",
+        "questionNumber": 0,
+        "rating": 4,
+        "responseText": "handler grimace fountain style hoe handler win smear pity washing",
+        "user": "steve"
+    }
+    
+
 ```
 
 To find the responses by text search 
 
 ```
 curl localhost:8080/text/handler 
+
+if request is successful, we should see response similar to below
+
+[
+    {
+        "responseId": "4aa2b234-5599-4438-85c4-be329c735253",
+        "surveyId": "100",
+        "questionNumber": 0,
+        "rating": 4,
+        "responseText": "handler grimace fountain style hoe handler win smear pity washing",
+        "user": "steve"
+    },
+    {
+        "responseId": "cf932ed9-cf88-4116-afe3-6ad2710ef4ce",
+        "surveyId": "100",
+        "questionNumber": 1,
+        "rating": 7,
+        "responseText": "dash embrace win programmer handler swollen",
+        "user": "bruce"
+    }
+]    
 
 ```
 
