@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+## Introduction
+In this workshop, we will go cover basics of following topics
 
-You can use the [editor on GitHub](https://github.com/p360-workshop/DevDays-2020/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+1. Spring boot
+2. Docker and Kubernetes
+3. Kafka and Kafka Streams
+4. Elasticsearch 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Code 
 
-### Markdown
+This workshop is available at 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+https://github.com/p360-workshop/DevDays-2020
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+## Environment
 
-- Bulleted
-- List
+We have setup VMs for all attendees in AWS with all the tools required for this workshop. 
 
-1. Numbered
-2. List
+## How to access the environment
 
-**Bold** and _Italic_ and `Code` text
+Use this url to access your environment
 
-[Link](url) and ![Image](src)
-```
+`https://<firstname-lastname>.hue.providerdataplatform.net`
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+Once the IDE opens; you can open the terminal  
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/p360-workshop/DevDays-2020/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Top left menu button> Terminal > New Terminal
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Note
+This env is available for the days of the workshop after which the env will be brought down. Github location will be available for longer period. 
