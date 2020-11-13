@@ -1,4 +1,4 @@
-## Ingress 
+# Ingress 
 
 
 
@@ -57,7 +57,12 @@ Change your directory to following folder
 
 `cd DevDays-2020\DockerAndKubernetes\lab-content\5-ingress`
 
+
+
 For purpose of this lab,  Ingress Controller has already been created. 
+
+
+## Creating Ingress
 
 To test things out, you need to get your Ingress Controller entrypoint.
 
