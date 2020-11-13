@@ -18,4 +18,4 @@
     1. Find products where the `taxless_total_price` is between $60 and $65.
     
 
-[Lab 3 - Visualize - Explore](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/03-lab)
+[Lab 3 - Visualize - Explore](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/03-lab.md)
