@@ -129,7 +129,7 @@ Before we create the new deployment, let's inspect the file:
 `cat dep-manifest.yaml; `
 
 ```
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
