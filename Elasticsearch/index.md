@@ -2,22 +2,26 @@
 
 The Elastic stack can be brought up locally using Docker
 
-1. docker-compose up -d
+docker-compose up -d
 
-The local kibana can be accessed here with sample data loaded :  http://localhost:5601
-The local Elastic can be access : http://localhost:9200
+    - The local kibana can be accessed here with sample data loaded:  
+        http://localhost:5601
+    - The local Elastic can be access : 
+        http://localhost:9200
 
-2.  Or can launch Kibana in the Lab Environment using: https://kibana.workshop.providerdataplatform.net
+ Kibana in the Lab Environment using: 
+    - https://kibana.workshop.providerdataplatform.net
 
-[Lab 1 - Discover](01-lab)
 
-[Lab 2 - Search](02-lab)
+link:01-lab.html[Lab 1 - Discover]
+    
+link:02-lab.html[Lab 2 - Search]
 
-[Lab 3 - Visualize - Explore](03-lab)
+link:03-lab.html[Lab 3 - Visualize - Explore]
 
-[Lab 4 - Visualize - Create](04-lab)
+link:04-lab.html[Lab 4 - Visualize - Create]
 
-[Lab 5 - Spring Boot Data Ingestion and Data querying from Elastic through API ](05-lab)
+link:05-lab.html[Lab 5 - Spring Boot Data Ingestion and Data querying from Elastic through API ]
 
 
 

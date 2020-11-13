@@ -12,6 +12,6 @@
     1. Note a "user" value (e.g. jackson)
     1. Note a "geoip.city_name" (e.g. Los Angeles)
     
-[Lab 2 - Search](labs/02-lab.md)
+[Lab 2 - Search](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/02-lab.md)
 
 
