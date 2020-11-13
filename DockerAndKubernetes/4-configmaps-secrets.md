@@ -1,5 +1,7 @@
 # Managing Application Configurations and Secrets
 
+## Concept
+
 Many applications require configuration settings and secrets such as TLS certificates to run in a production environment. In this lab you will learn how to:
 
 * Create secrets to store sensitive application data
@@ -10,7 +12,7 @@ In this lab we will create a new Pod named `secure-monolith` based on the `healt
 
 > The nginx container will be deployed in the same pod as the monolith container because they are tightly coupled.
 
-## Tutorial: Creating Secrets
+## Creating Secrets
 
 Before we can use the `nginx` container to serve HTTPS traffic we need some TLS certificates. In this tutorial you will store a set of self-signed TLS certificates in Kubernetes as secrets.
 
@@ -31,7 +33,7 @@ kubectl describe secrets tls-certs
 * How many items are stored under the `tls-certs` secret?
 * What are the key names?
 
-## Tutorial: Creating Configmaps
+## Creating Configmaps
 
 The nginx container also needs a configuration file to setup the secure reverse proxy. In this tutorial you will create a configmap from the `proxy.conf` nginx configuration file.
 
@@ -52,7 +54,7 @@ kubectl describe configmaps nginx-proxy-conf
 * How many items are stored under the `nginx-proxy-conf` configmap?
 * What are the key names?
 
-## Tutorial: Use Configmaps and Secrets
+## Use Configmaps and Secrets
 
 In this tutorial you will expose the `nginx-proxy-conf` configmap and the `tls-certs` secrets to the `secure-monolith` pod at runtime:
 

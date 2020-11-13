@@ -1,6 +1,12 @@
+## Ingress 
+
+
+
+## Concept
+
 Ingress gives you a way to route requests to services based on the request host or path, centralizing a number of services into a single entrypoint (or in this case, load balancer).
 
-### Ingress Resources
+
 
 Ingress is split up into two main pieces. The first is an Ingress resource, which defines how you want requests routed to the backing services.
 
@@ -13,14 +19,12 @@ metadata:
   name: my-ingress
 spec:
   rules:
-  - host: www.mysite.com
-    http:
+  - http:
       paths:
       - backend:
           serviceName: website
           servicePort: 80
-  - host: forums.mysite.com
-    http:
+  - http:
       paths:
       - path:
         backend:
@@ -35,8 +39,25 @@ Here is where things seem to get confusing, though. Ingress on its own doesn't r
 Ingress Controllers can technically be any system capable of reverse proxying, but the most common is Nginx. A full example Nginx Ingress Controller (and LoadBalancer service) is as follows. Please note that if you are not on a provider that supports LoadBalancer services (ie. bare-metal), you can create a NodePort Service instead and point to your nodes with an alternative solution that fills that role — a reverse proxy capable of routing requests to the exposed NodePort for the Ingress Controller on each of your nodes.
 
 
-For purpose of this lab,  Ingress Controller has already been created. 
 
+
+## What will you need
+
+Make sure you have code for the lab and you are in right path
+
+Open up your IDE here
+
+`https://<firstname-lastname>.hue.providerdataplatform.net/`
+
+Clone the repo if you don't have it already
+
+`git clone https://github.com/p360-workshop/DevDays-2020.git`
+
+Change your directory to following folder
+
+`cd DevDays-2020\DockerAndKubernetes\lab-content\5-ingress`
+
+For purpose of this lab,  Ingress Controller has already been created. 
 
 To test things out, you need to get your Ingress Controller entrypoint.
 

@@ -1,9 +1,27 @@
 
-**Service**
+## Concept
 
 An abstract way to expose an application running on a set of Pods as a network service
 
 
+## What will you need
+
+Make sure you have code for the lab and you are in right path
+
+Open up your IDE here
+
+`https://<firstname-lastname>.hue.providerdataplatform.net/`
+
+Clone the repo if you don't have it already
+
+`git clone https://github.com/p360-workshop/DevDays-2020.git`
+
+Change your directory to following folder
+
+`cd DevDays-2020\DockerAndKubernetes\lab-content\3-services`
+
+
+## Create Service
 
 First things first, lets create a deployment that we will use to learn the various service types.
 
@@ -27,6 +45,8 @@ or if we want more information:
 
 `kubectl describe svc clusterip-nginx-service`
 
+## Validate
+
 Lets see if we can hit the service from another pod running in the cluster:
 
 Run another pod in the cluster
@@ -36,7 +56,6 @@ Run another pod in the cluster
 Make sure that your pod is spun up
 
 `kubectl get pods`
-
 
 
 Enter into the pod using this:

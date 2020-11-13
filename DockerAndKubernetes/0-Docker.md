@@ -1,9 +1,9 @@
-Welcome to the Basics of Docker.
+## What will you build
 
 You will learn how to run the most often used commands in day to day work with docker.
 
 
-### Dockerfile
+## Concept
 
 At the core of everything in Docker is the Dockerfile.
 
@@ -13,84 +13,96 @@ Look at the file `/Dockerfile`
 
 
 ```
-FROM openjdk:10-jdk
+# Set the base image to Ubuntu
+FROM ubuntu
 
-CMD ["gradle"]
+# Update the repository
+RUN apt-get update
 
-ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.9
+# Install necessary tools
+RUN apt-get install -y vim wget dialog net-tools nginx
 
-ARG GRADLE_DOWNLOAD_SHA256=e66e69dce8173dd2004b39ba93586a184628bc6c28461bc771d6835f7f9b0d28
-RUN set -o errexit -o nounset \
-	&& echo "Downloading Gradle" \
-	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
-	\
-	&& echo "Checking download hash" \
-	&& echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum --check - \
-	\
-	&& echo "Installing Gradle" \
-	&& unzip gradle.zip \
-	&& rm gradle.zip \
-	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
-	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
-	\
-	&& echo "Adding gradle user and group" \
-	&& groupadd --system --gid 1000 gradle \
-	&& useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
-	&& mkdir /home/gradle/.gradle \
-	&& chown --recursive gradle:gradle /home/gradle \
-	\
-	&& echo "Symlinking root Gradle cache to gradle Gradle cache" \
-	&& ln -s /home/gradle/.gradle /root/.gradle
+# Remove the default Nginx configuration file
+RUN rm -v /etc/nginx/nginx.conf
 
-# Create Gradle volume
-USER gradle
-VOLUME "/home/gradle/.gradle"
-WORKDIR /home/gradle
+# Copy a configuration file from the current directory
+ADD nginx.conf /etc/nginx/
 
-RUN set -o errexit -o nounset \
-	&& echo "Testing Gradle installation" \
-	&& gradle --version
+RUN mkdir /etc/nginx/logs
+
+# Add a sample index file
+ADD index.html /www/data/
+
+# Append "daemon off;" to the beginning of the configuration
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
+# Create a runner script for the entrypoint
+COPY runner.sh /runner.sh
+RUN chmod +x /runner.sh
+
+# Expose ports
+EXPOSE 80
+
+ENTRYPOINT ["/runner.sh"]
+
+# Set the default command to execute
+# when creating a new container
+CMD ["nginx"]
 
 ```
-### Building a container image
+
+## What will you need
+
+Make sure you have code for the lab and you are in right path
+
+Open up your IDE here
+
+`https://<firstname-lastname>.hue.providerdataplatform.net/`
+
+Clone the repo if you don't have.
+
+`git clone https://github.com/p360-workshop/DevDays-2020.git`
+
+Change your directory to following folder
+
+`cd DevDays-2020\DockerAndKubernetes\lab-content\0-docker`
+
+
+## Building a container image
 
 To build a docker container image from a Dockerbuild file run the following
 
-` docker build . -t 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<YourMSid>`
+`docker build . -t 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<firstname-lastname>`
 
 To see image you have available in your machine run the following:
 
-` docker images`
+`docker images`
 
 
 To push the image that you just built , run the following command:
 
-`docker push 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<YourMSid>`
+`docker push 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<firstname-lastname>`
 
 To remove an image that you just built, run the following command:
 
-`docker rmi 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<YourMSid>`
+`docker rmi 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<firstname-lastname>`
 
 
 To pull an image that you just pushed, run the following command:
 
-`docker pull 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<YourMSid>`
+`docker pull 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<firstname-lastname>`
 
 
-### Launching a container
+## Launching a container
 
 To launch a container in docker we specify the following
 
-`docker run -d nginx`
+`docker run -d -p 8081:80 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<firstname-lastname>`
 
 The `-d` means run in detached mode.
 
-This doesn't allow us to access our nginx instance though as we didn't expose it!
+The `-p 8081:80` is for port mapping between host machine and container so that we can access the application outside of container
 
-Let's try again:
-
-`docker run -d -p 8081:80 nginx`
 
 Now you should be able to access the basic html website with:
 

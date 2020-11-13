@@ -14,9 +14,28 @@ Kubernetes deployments manage stateless services running in your cluster (as opp
 
 ![image](assets/deployment-high-level.png)
 
-### Creating a Deployment in kubectl
 
-Before we start, you should already have a namespace created called `<YourMSId>` all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:
+## What will you need
+
+Make sure you have code for the lab and you are in right path
+
+Open up your IDE here
+
+`https://<firstname-lastname>.hue.providerdataplatform.net/`
+
+Clone the repo if you don't have.
+
+`git clone https://github.com/p360-workshop/DevDays-2020.git`
+
+Change your directory to following folder
+
+`cd DevDays-2020\DockerAndKubernetes\lab-content\2-deployment`
+
+
+
+## Creating a Deployment in kubectl
+
+Before we start, you should already have a namespace created called `<firstname-lastname>` all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:
 
 `kubectl create namespace <YourNamespaceName>`
 
@@ -25,14 +44,14 @@ Create a basic deployment called `nginx-deployment` using the `nginx` image, and
 `kubectl run nginx-deployment -n <YourNamespaceName> --image=nginx --port 80`
 
 ```
-$ kubectl run nginx-deployment -n <YourMSId> --image=nginx --port 80
+$ kubectl run nginx-deployment -n <firstname-lastname> --image=nginx --port 80
 
 deployment.apps "nginx-deployment" created
 ```
 
 Now let's inspect the deployment that we've just created:
 
-`kubectl get deployment nginx-deployment -n <YourMSId> -o yaml`
+`kubectl get deployment nginx-deployment -n <firstname-lastname> -o yaml`
 
 ```
 apiVersion: extensions/v1beta1
@@ -45,7 +64,7 @@ metadata:
   labels:
     run: nginx-deployment
   name: nginx-deployment
-  namespace: <YourMSId>
+  namespace: <firstname-lastname>
   resourceVersion: "849"
   selfLink: /apis/extensions/v1beta1/namespaces/contino/deployments/nginx-deployment
   uid: 035c4414-9a70-11e8-a7a6-0242ac110067
@@ -55,7 +74,7 @@ The metadata contains the name of the deployment (which must be unique), an inte
 
 >**Take Away Point:** Label everything!
 
-### Deployment Object
+## Deployment Object
 
 Next, we're going to cover the main deployment object, or `spec`.
 
@@ -97,11 +116,11 @@ The two other keys can be set to customize the behavior of the deployment.
 - `selector`: determines which pods are considered to be part of this deployment. This uses labels to 'select' pods.
 - `strategy`: states how an update to a deployment should be rolled out. See earlier at the start of this chapter for the Kubernetes API link on more information on deployment strategies.
 
-### Deployment using yaml file
+## Deployment using yaml file
 
 Because you have already created a deployment earlier called `nginx-deployment`, we need to delete it before we can create a new deployment with the YAML manifest:
 
-`kubectl delete deployment nginx-deployment -n <YourMSId>`
+`kubectl delete deployment nginx-deployment -n <firstname-lastname>`
 
 Before we create the new deployment, let's inspect the file:
 
@@ -114,7 +133,7 @@ metadata:
   labels:
     run: nginx-deployment
   name: nginx-deployment
-  namespace: <YourMSId>
+  namespace: <firstname-lastname>
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -145,20 +164,20 @@ As you can see, it essentially re-creates the YAML output from the deployment th
 
 Now create the deployment:
 
-`kubectl create -f dep-manifest.yaml -n <YourMSId>`
+`kubectl create -f dep-manifest.yaml -n <firstname-lastname>`
 
 Get the deployment:
 
-`kubectl get deployments -n <YourMSId> -o yaml`
+`kubectl get deployments -n <firstname-lastname> -o yaml`
 
 If you go back to the previous chapter where we created the deployment manually, you'll see that the output is very similar to the output above.
 
 
-**Scale Deployments**
+## Scale Deployments
 
 Now that you've created your deployment, let's look at scaling. Similar to how we created a deployment, you can update the replicas through the deployment manifest or by the `kubectl` command. For example:
 
-`kubectl scale deployment nginx-deployment --replicas=10 -n <YourMSId>`
+`kubectl scale deployment nginx-deployment --replicas=10 -n <firstname-lastname>`
 
 This will scale the `nginx-deployment` Deployment to `10` replicas.
 
@@ -172,38 +191,6 @@ Find the line `9` in the manifest, and update it to 10 replicas. `:wq` in `vim` 
 
 Once the deployment has been updated, check the pods:
 
-`kubectl get po -n <YourMSId>`
+`kubectl get po -n <firstname-lastname>`
 
 You should see 10 nginx pods now. You've successfully just scaled your deployment. Equally, to scale down your deployment, simply change the number of replicas and update the deployment again.
-
-## Proportional scaling
-
-RollingUpdate Deployments support running multiple versions of an application at the same time. When you scale a RollingUpdate Deployment that is in the middle of a rollout (either in progress or paused), then the Deployment controller will balance the additional replicas in the existing active ReplicaSets (ReplicaSets with Pods) in order to mitigate risk. This is called proportional scaling.
-
-For example, you are running a Deployment with 10 replicas, maxSurge=3, and maxUnavailable=2.
-
-`kubectl get deployments -n <YourMSId>`
-
-```sh
-NAME                 DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment     10        10        10           10          50s
-```
-
-You update to a new image which happens to be unresolvable from inside the cluster.
-
-`kubectl set image deploy/nginx-deployment nginx-deployment=nginx:unresolvabletag -n <YourMSId>`
-
-```sh
-deployment "nginx-deployment" image updated
-```
-
-The image update starts a new rollout with updated image nginx-deployment, but the rollout is halted due to failing pods and maxUnavailable requirement that we mentioned above.
-
-`kubectl -n <YourMSId> get pods`
-
-```sh
-NAME                          DESIRED   CURRENT   READY     AGE
-nginx-deployment-6975c45ccc-rmcj2   0/1     ErrImagePull   0          3m26s
-nginx-deployment-6975c45ccc-v9s6h   0/1     ErrImagePull   0          3m26s
-...
-```
