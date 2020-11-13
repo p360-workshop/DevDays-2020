@@ -8,7 +8,7 @@ Many applications require configuration settings and secrets such as TLS certifi
 * Create configmaps to store application configuration data
 * Expose secrets and configmaps to Pods at runtime
 
-In this lab we will create a new Pod named `secure-monolith` based on the `healthy-monolith` Pod. The `secure-monolith` Pod secures access to the `monolith` container using [Nginx](http://nginx.org/en), which will serve as a reverse proxy serving HTTPS.
+In this lab we will create a new Deployment named `secure-monolith` based on the `healthy-monolith` Pod. The `secure-monolith` deployment secures access to the `monolith` container using http://nginx.org/en[Nginx] container, which will serve as a reverse proxy serving HTTPS.
 
 > The nginx container will be deployed in the same pod as the monolith container because they are tightly coupled.
 

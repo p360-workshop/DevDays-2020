@@ -1,8 +1,7 @@
 # Namespace
 
 ## Concept
-
-You can think of a [**Namespace**](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) as a virtual cluster inside of your Kubernetes deployment. You can have multiple namespaces inside of a single Kubernetes cluster and each one of them is isolated from each other. As all pods run in a specifc namespace, they can help your team with the organisation, security and performance of your pods.
+You can think of a https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/[Namespace] as a virtual cluster inside of your Kubernetes deployment. You can have multiple namespaces inside of a single Kubernetes cluster and each one of them is isolated from each other. As all pods run in a specifc namespace, they can help your team with the organisation, security and performance of your pods.
 
 
 **Namespaces** isolate pods to separate workloads from each other and to give you the capability of setting up resource constrainsts. You can map namespaces to the different application environments you might consider. 
