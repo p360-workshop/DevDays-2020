@@ -9,15 +9,15 @@ The local Elastic can be access : http://localhost:9200
 
 2.  Or can launch Kibana in the Lab Environment using: https://kibana.workshop.providerdataplatform.net
 
-[Lab 1 - Discover](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/01-lab.md)
+link:01-lab.html[Lab 1 - Discover]
 
-[Lab 2 - Search](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/02-lab.md)
+link:02-lab.html[Lab 2 - Search] 
 
-[Lab 3 - Visualize - Explore](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/03-lab.md)
+link:03-lab.html[Lab 3 - Visualize - Explore] 
 
-[Lab 4 - Visualize - Create](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/04-lab.md)
+link:04-lab.html[Lab 4 - Visualize - Create] 
 
-[Lab 5 - Spring Boot Data Ingestion and Data querying from Elastic through API ](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/05-lab.md)
+link:05-lab.html[Lab 5 - Spring Boot Data Ingestion and Data querying from Elastic through API ]
 
 
 
