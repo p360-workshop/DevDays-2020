@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Docker And Kubernetes</title>
+<title>Introduction</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -441,43 +441,63 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_docker_and_kubernetes">Docker And Kubernetes</h2>
+<h2 id="_introduction">Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this section, you will learn some basics of docker and kubernetes.</p>
-</div>
-<div class="paragraph">
-<p>P360 uses microservices for its streaming ETL pipelines. All the microservices are run in docker container. These containers run on kubernetes. For more information on <a href="https://www.confluent.io/online-talk/etl-is-dead-long-live-streams/?utm_source=blog&amp;utm_medium=changing_face_etl&amp;utm_campaign=ksql">why streaming ETL</a>, <a href="https://blog.usejournal.com/why-are-you-still-doing-batch-processing-etl-is-dead-3dac2392a772">why microservice for ETL</a>, <a href="https://raygun.com/blog/what-is-docker/">why docker</a> and why <a href="https://platform9.com/wp-content/uploads/2018/08/why-kubernetes-matters.pdf">kubernetes</a> click on the link</p>
+<p>In this workshop, we will go cover basics of following topics
+1. [Docker and Kubernetes](DockerAndKubernetes)
+2. [Spring boot](SpringBoot)
+3. [Kafka and Kafka Streams](kafka)
+4. [Elastic Search ](Elasticsearch)</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_labs">Labs</h2>
+<h2 id="_code">Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="0-Docker.html">Docker</a></p>
+<p>This workshop is available at</p>
 </div>
 <div class="paragraph">
-<p><a href="1-namespaces.html">Namespace</a></p>
+<p><a href="https://p360-workshop.github.io/DevDays-2020" class="bare">https://p360-workshop.github.io/DevDays-2020</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_environment">Environment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We have setup VMs for all attendees in AWS with all the tools required for this workshop. Each VM also has web based IDE</p>
 </div>
 <div class="paragraph">
-<p><a href="2-deployment.html">Deployment</a></p>
+<p>Use this url to access your IDE</p>
 </div>
 <div class="paragraph">
-<p><a href="3-services.html">Service</a></p>
+<p><code><a href="https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net" class="bare">https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net</a></code></p>
 </div>
 <div class="paragraph">
-<p><a href="4-configmaps-secrets.html">ConfigMap and Secret</a></p>
+<p>Once the IDE opens; you can open the terminal</p>
 </div>
 <div class="paragraph">
-<p><a href="5-ingress.html">Ingress</a></p>
+<p>Top left menu button&gt; Terminal &gt; New Terminal</p>
+</div>
+<div class="paragraph">
+<p>Tools such as gradle, docker, kubectl are available via terminal</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_note">Note</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This env is available for the days of the workshop after which the env will be brought down. Github location will be available for longer period.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 13:30:51 UTC
+Last updated 2020-11-13 12:47:38 UTC
 </div>
 </div>
 </body>
