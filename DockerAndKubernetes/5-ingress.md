@@ -27,7 +27,8 @@ spec:
           servicePort: 80
 
 ```
-![image](lab-content/ingressoverview.jpeg)
+
+image::lab-content/ingressoverview.jpeg[Caption="Ingress Overview"]
 
 
 Here is where things seem to get confusing, though. Ingress on its own doesn't really do anything. You need something to listen to the Kubernetes API for Ingress resources and then handle requests that match them. This is where the second piece to the puzzle comes in — the Ingress Controller.

@@ -14,8 +14,7 @@ Kubernetes deployments manage stateless services running in your cluster (as opp
 
 
 
-![image](lab-content/deployment-high-level.png)
-
+image::lab-content/deployment-high-level.png[Deployment,500,500]
 
 ## What will you need
 
