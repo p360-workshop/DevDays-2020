@@ -21,7 +21,7 @@ We have setup VMs for all attendees in AWS with all the tools required for this 
 
 Use this url to access your environment
 
-https://<firstname-lastname>.hue.providerdataplatform.net
+`https://<firstname-lastname>.hue.providerdataplatform.net`
 
 
 Once the IDE opens; you can open the terminal  

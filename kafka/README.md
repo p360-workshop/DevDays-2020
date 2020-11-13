@@ -24,7 +24,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
 
 ### Creating & executing Kafka Docker image
 
-  - Launch you IDE at https://<firstname-lastname>.hue.providerdataplatform.net/. Once the IDE opens; click Top left menu button> Terminal > New Terminal
+  - Launch you IDE at `https://<firstname-lastname>.hue.providerdataplatform.net/`. Once the IDE opens; click Top left menu button> Terminal > New Terminal
   - Execute below commands to download codebase repo to create & execute Kafka docker image (Please make sure to replace <msid> token)
     ```sh
     $ sudo su
@@ -37,7 +37,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
 ### Setting up prerequisite kafka topics for execution
 
  - Kafka Streaming application would internally require input/optput & internal topics to perform realtime streaming aggregation.
- - Launch you IDE at https://<firstname-lastname>.hue.providerdataplatform.net/. Once the IDE opens; click Top left menu button> Terminal > New Terminal
+ - Launch you IDE at `https://<firstname-lastname>.hue.providerdataplatform.net/`. Once the IDE opens; click Top left menu button> Terminal > New Terminal
  - Execute below commands to setup Kafka topics (Please make sure to replace <msid> token)
     ```sh
     $ sudo su
