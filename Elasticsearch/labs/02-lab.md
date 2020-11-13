@@ -16,8 +16,6 @@
         * customer_last_name.keyword: "Jackson"
     1. Using "keyword" (if your property is mapped like this) does exact value searching.
     1. Find products where the `taxless_total_price` is between $60 and $65.
-        * Hint: `taxless_total_price >= 60 and taxless_total_price <= 65`
-        * Verify by expanding the results.
     
 
-[Lab 3 - Visualize - Explore](https://github.com/p360-workshop/DevDays-2020/blob/feature/es/Elasticsearch/labs/03-lab.md)
+[Lab 3 - Visualize - Explore](https://github.com/p360-workshop/DevDays-2020/blob/master/Elasticsearch/labs/03-lab)
