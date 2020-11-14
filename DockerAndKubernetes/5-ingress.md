@@ -86,7 +86,7 @@ Replace <firstname-lastname> in demo-ing.yaml with your firstname and lastname
 
 ## Validation
 
-Open a browser and go https://<firstname-lastname>.p360.providerdataplatform.net/
+Open a browser and go to `https://<firstname-lastname>.p360.providerdataplatform.net/`
 
 ## Cleanup
 
