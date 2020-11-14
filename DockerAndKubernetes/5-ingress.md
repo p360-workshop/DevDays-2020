@@ -74,7 +74,7 @@ For purpose of this lab,  Ingress Controller has already been created.
 
 Change your directory to following folder
 
-`cd DevDays-2020\DockerAndKubernetes\lab-content\5-ingress`
+`cd /root/DevDays-2020/DockerAndKubernetes/lab-content/5-ingress/`
 
 
 To test things out, you need to get your Ingress Definition.
@@ -82,7 +82,7 @@ To test things out, you need to get your Ingress Definition.
 
 Replace <firstname-lastname> in demo-ing.yaml with your firstname and lastname
 
-`kubectl create -f demo-ing.yaml`
+`kubectl create -f demo-ing.yaml --namespace=<firstname-lastname>`
 
 ## Validation
 
@@ -90,4 +90,4 @@ Open a browser and go https://<firstname-lastname>.p360.providerdataplatform.net
 
 ## Cleanup
 
-`kubectl delete -f demo-ing.yaml`
+`kubectl delete -f demo-ing.yaml --namespace=<firstname-lastname>`

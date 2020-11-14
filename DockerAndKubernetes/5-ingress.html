@@ -536,7 +536,7 @@ spec:
 <p>Change your directory to following folder</p>
 </div>
 <div class="paragraph">
-<p><code>cd DevDays-2020\DockerAndKubernetes\lab-content\5-ingress</code></p>
+<p><code>cd /root/DevDays-2020/DockerAndKubernetes/lab-content/5-ingress/</code></p>
 </div>
 <div class="paragraph">
 <p>To test things out, you need to get your Ingress Definition.</p>
@@ -545,7 +545,7 @@ spec:
 <p>Replace &lt;firstname-lastname&gt; in demo-ing.yaml with your firstname and lastname</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl create -f demo-ing.yaml</code></p>
+<p><code>kubectl create -f demo-ing.yaml --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
 </div>
 </div>
@@ -561,14 +561,14 @@ spec:
 <h2 id="_cleanup">Cleanup</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>kubectl delete -f demo-ing.yaml</code></p>
+<p><code>kubectl delete -f demo-ing.yaml --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-14 12:53:36 UTC
+Last updated 2020-11-14 15:43:03 UTC
 </div>
 </div>
 </body>
