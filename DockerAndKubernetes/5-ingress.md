@@ -84,6 +84,26 @@ Replace <firstname-lastname> in demo-ing.yaml with your firstname and lastname
 
 `kubectl create -f demo-ing.yaml --namespace=<firstname-lastname>`
 
+Describe the ingress object that you just created
+
+`kubectl get ing demo-ingress -o yaml --namespace=<firstname-lastname>`
+
+
+
+```
+.....
+  - host: manish-rajkarnikar.p360.providerdataplatform.net
+    http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
+.....
+```
+
+Note the section for hostname mapping. 
+
+
 ## Validation
 
 Open a browser and go to `https://<firstname-lastname>.p360.providerdataplatform.net/`

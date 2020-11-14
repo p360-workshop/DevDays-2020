@@ -547,6 +547,27 @@ spec:
 <div class="paragraph">
 <p><code>kubectl create -f demo-ing.yaml --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
+<div class="paragraph">
+<p>Describe the ingress object that you just created</p>
+</div>
+<div class="paragraph">
+<p><code>kubectl get ing demo-ingress -o yaml --namespace=&lt;firstname-lastname&gt;</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>.....
+  - host: manish-rajkarnikar.p360.providerdataplatform.net
+    http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
+.....</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the section for hostname mapping.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -568,7 +589,7 @@ spec:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-14 16:06:40 UTC
+Last updated 2020-11-14 16:43:45 UTC
 </div>
 </div>
 </body>
