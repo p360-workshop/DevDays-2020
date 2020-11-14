@@ -56,20 +56,25 @@ Clone the repo if you don't have it already
 
 `git clone https://github.com/p360-workshop/DevDays-2020.git`
 
+You should already have a namespace created called `<firstname-lastname>` all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:
+
+`kubectl create namespace <firstname-lastname>`
+
+Set your default namespace so that you don't to specify namespace everytime. 
+
+`kubectl config set-context --current --namespace=<firstname-lastname>`
 
 
-
-
-
-
-For purpose of this lab,  Ingress Controller has already been created. 
 
 
 ## Creating Ingress
 
+For purpose of this lab,  Ingress Controller has already been created. 
+
+
 Change your directory to following folder
 
-`cd DevDays-2020\DockerAndKubernetes\lab-content\5-ingress`
+`cd /root/DevDays-2020/DockerAndKubernetes/lab-content/5-ingress/`
 
 
 To test things out, you need to get your Ingress Definition.
@@ -77,7 +82,7 @@ To test things out, you need to get your Ingress Definition.
 
 Replace <firstname-lastname> in demo-ing.yaml with your firstname and lastname
 
-`kubectl create -f demo-ing.yaml`
+`kubectl create -f demo-ing.yaml --namespace=<firstname-lastname>`
 
 ## Validation
 
@@ -85,4 +90,4 @@ Open a browser and go https://<firstname-lastname>.p360.providerdataplatform.net
 
 ## Cleanup
 
-`kubectl delete -f demo-ing.yaml`
+`kubectl delete -f demo-ing.yaml --namespace=<firstname-lastname>`
