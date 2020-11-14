@@ -69,3 +69,11 @@ Replace the pod name with yours from above command
 Hit the service from this pod
 
 curl http://clusterip-nginx-service
+
+
+## Cleanup
+
+Run this command to clean up the service and deployment at once. Make sure you are in right folder before you run this command. 
+
+`kubectl delete -f- . -n <firstname-lastname>`
+

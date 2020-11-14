@@ -75,6 +75,9 @@ To see image you have available in your machine run the following:
 
 `docker images`
 
+Authenticate to ECR so that you can push image
+
+`docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) https://840891909344.dkr.ecr.us-east-1.amazonaws.com`
 
 To push the image that you just built , run the following command:
 

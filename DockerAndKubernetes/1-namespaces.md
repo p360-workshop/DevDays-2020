@@ -1,8 +1,7 @@
 # Namespace
 
 ## Concept
-
-You can think of a [**Namespace**](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) as a virtual cluster inside of your Kubernetes deployment. You can have multiple namespaces inside of a single Kubernetes cluster and each one of them is isolated from each other. As all pods run in a specifc namespace, they can help your team with the organisation, security and performance of your pods.
+You can think of a https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/[Namespace] as a virtual cluster inside of your Kubernetes deployment. You can have multiple namespaces inside of a single Kubernetes cluster and each one of them is isolated from each other. As all pods run in a specifc namespace, they can help your team with the organisation, security and performance of your pods.
 
 
 **Namespaces** isolate pods to separate workloads from each other and to give you the capability of setting up resource constrainsts. You can map namespaces to the different application environments you might consider. 
@@ -45,22 +44,7 @@ We will create namespace with name as our msid so that we don't step over each o
 `kubectl create namespace <firstname-lastname>`
 
 
-## Create test namespace using yaml:
-You can create a YAML file and apply it, just like any other Kubernetes resource.
 
-Look at the file `test-namespace.yaml`
-
-
-```
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: <firstname-lastname>
-```
-
-
-
-`kubectl apply -f test-namespace.yaml`
 
 ## List all namespaces:
 
@@ -79,10 +63,25 @@ or
 Check that the `<firstname-lastname>` namespace has been successfully deleted:
 
 `kubectl get namespaces`
+## Create test namespace using yaml:
+We are  going to re-create   ```<firstname-lastname>``` namespace as we will use it later in this course. But this time we will create it using yaml file.
 
-We are  going to re-create   ```<firstname-lastname>``` namespace as we will use it later in this course.
+You can create a YAML file and apply it, just like any other Kubernetes resource.
+
+Look at the file `test-namespace.yaml`
+
+
+```
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: <firstname-lastname>
+```
+
+
 
 `kubectl apply -f test-namespace.yaml`
+
 
 ## Set your default namespace:
 

@@ -8,7 +8,7 @@ Many applications require configuration settings and secrets such as TLS certifi
 * Create configmaps to store application configuration data
 * Expose secrets and configmaps to Pods at runtime
 
-In this lab we will create a new Pod named `secure-monolith` based on the `healthy-monolith` Pod. The `secure-monolith` Pod secures access to the `monolith` container using [Nginx](http://nginx.org/en), which will serve as a reverse proxy serving HTTPS.
+In this lab we will create a new Deployment named `secure-monolith` based on the `healthy-monolith` Pod. The `secure-monolith` deployment secures access to the `monolith` container using http://nginx.org/en[Nginx] container, which will serve as a reverse proxy serving HTTPS.
 
 > The nginx container will be deployed in the same pod as the monolith container because they are tightly coupled.
 
@@ -98,3 +98,11 @@ kubectl logs -c nginx secure-monolith
 ## Summary
 
 Secrets and Configmaps allow you to store application secrets and configuration data, then expose them to Pods at runtime. In this lab you learned how to expose Secrets and Configmaps to Pods using volume mounts. You also learned how to run multiple containers in a single Pod.
+
+
+## Cleanup
+
+```
+kubectl delete -f pods/secure-monolith.yaml
+kubectl delete configmaps nginx-proxy-conf
+```
