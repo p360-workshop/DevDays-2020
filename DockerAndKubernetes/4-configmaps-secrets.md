@@ -12,7 +12,42 @@ In this lab we will create a new Deployment named `secure-monolith` based on the
 
 > The nginx container will be deployed in the same pod as the monolith container because they are tightly coupled.
 
+## What will you need
+
+Make sure you have code for the lab and you are in right path. Skip this step if you already done this
+
+Open up your IDE here
+
+`https://<firstname-lastname>.hue.providerdataplatform.net/`
+
+Open up terminal if a terminal is not open
+
+`Top left menu button> Terminal > New Terminal`
+
+Change directory to /root 
+
+`cd /root`
+
+Clone the repo if you don't have it already
+
+`git clone https://github.com/p360-workshop/DevDays-2020.git`
+
+You should already have a namespace created called `<firstname-lastname>` all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:
+
+`kubectl create namespace <firstname-lastname>`
+
+Set your default namespace so that you don't to specify namespace everytime. 
+
+`kubectl config set-context --current --namespace=<firstname-lastname>`
+
+
 ## Creating Secrets
+
+Change your directory to following folder
+
+`cd /root/DevDays-2020/DockerAndKubernetes/lab-content/3-services`
+
+
 
 Before we can use the `nginx` container to serve HTTPS traffic we need some TLS certificates. In this tutorial you will store a set of self-signed TLS certificates in Kubernetes as secrets.
 

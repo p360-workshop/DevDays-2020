@@ -50,22 +50,32 @@ CMD ["nginx"]
 
 ## What will you need
 
-Make sure you have code for the lab and you are in right path
+Make sure you have code for the lab and you are in right path. Skip this step if you already done this
 
 Open up your IDE here
 
 `https://<firstname-lastname>.hue.providerdataplatform.net/`
 
-Clone the repo if you don't have.
+Open up terminal if a terminal is not open
+
+`Top left menu button> Terminal > New Terminal`
+
+Change directory to /root 
+
+`cd /root`
+
+Clone the repo if you don't have it already
 
 `git clone https://github.com/p360-workshop/DevDays-2020.git`
 
-Change your directory to following folder
-
-`cd DevDays-2020\DockerAndKubernetes\lab-content\0-docker`
 
 
 ## Building a container image
+
+Change your directory to following folder
+
+`cd /root/DevDays-2020/DockerAndKubernetes/lab-content/0-docker`
+
 
 To build a docker container image from a Dockerbuild file run the following
 
@@ -87,8 +97,11 @@ To remove an image that you just built, run the following command:
 
 `docker rmi 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<firstname-lastname>`
 
+Make sure that the image is removed from your local machine
 
-To pull an image that you just pushed, run the following command:
+`docker images`
+
+To pull an image back that you just pushed, run the following command:
 
 `docker pull 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:<firstname-lastname>`
 

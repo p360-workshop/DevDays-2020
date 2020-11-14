@@ -453,7 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_what_will_you_need">What will you need</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Make sure you have code for the lab and you are in right path</p>
+<p>Make sure you have code for the lab and you are in right path. Skip this step if you already done this</p>
 </div>
 <div class="paragraph">
 <p>Open up your IDE here</p>
@@ -462,16 +462,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><code><a href="https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/" class="bare">https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/</a></code></p>
 </div>
 <div class="paragraph">
+<p>Open up terminal if a terminal is not open</p>
+</div>
+<div class="paragraph">
+<p><code>Top left menu button&gt; Terminal &gt; New Terminal</code></p>
+</div>
+<div class="paragraph">
+<p>Change directory to /root</p>
+</div>
+<div class="paragraph">
+<p><code>cd /root</code></p>
+</div>
+<div class="paragraph">
 <p>Clone the repo if you don&#8217;t have it already</p>
 </div>
 <div class="paragraph">
 <p><code>git clone <a href="https://github.com/p360-workshop/DevDays-2020.git" class="bare">https://github.com/p360-workshop/DevDays-2020.git</a></code></p>
 </div>
 <div class="paragraph">
-<p>Change your directory to following folder</p>
+<p>You should already have a namespace created called <code>&lt;firstname-lastname&gt;</code> all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:</p>
 </div>
 <div class="paragraph">
-<p><code>cd DevDays-2020\DockerAndKubernetes\lab-content\3-services</code></p>
+<p><code>kubectl create namespace &lt;firstname-lastname&gt;</code></p>
+</div>
+<div class="paragraph">
+<p>Set your default namespace so that you don&#8217;t to specify namespace everytime.</p>
+</div>
+<div class="paragraph">
+<p><code>kubectl config set-context --current --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
 </div>
 </div>
@@ -479,37 +497,43 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_create_service">Create Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Change your directory to following folder</p>
+</div>
+<div class="paragraph">
+<p><code>cd /root/DevDays-2020/DockerAndKubernetes/lab-content/3-services</code></p>
+</div>
+<div class="paragraph">
 <p>First things first, lets create a deployment that we will use to learn the various service types.</p>
 </div>
 <div class="paragraph">
 <p>To do so run:</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl create -f nginx-deployment.yml</code></p>
+<p><code>kubectl create -f nginx-deployment.yml --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>and make sure all is healthy:</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl get deploy</code></p>
+<p><code>kubectl get deploy --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>Now that we have a working deployment, lets expose it to the cluster so that other deployments can access it too.</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl create -f clusterip-service.yml</code></p>
+<p><code>kubectl create -f clusterip-service.yml --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>We can check if it was created with:</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl get svc -o wide</code></p>
+<p><code>kubectl get svc -o wide --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>or if we want more information:</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl describe svc clusterip-nginx-service</code></p>
+<p><code>kubectl describe svc clusterip-nginx-service --namespace=&lt;firstname-lastname&gt;</code></p>
 </div>
 </div>
 </div>
@@ -535,16 +559,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Enter into the pod using this:</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl exec -it swissknife-78dcc876d5-ptphl bash</code></p>
-</div>
-<div class="paragraph">
-<p>Replace the pod name with yours from above command</p>
+<p><code>kubectl exec -it swissknife bash</code></p>
 </div>
 <div class="paragraph">
 <p>Hit the service from this pod</p>
 </div>
 <div class="paragraph">
 <p>curl <a href="http://clusterip-nginx-service" class="bare">http://clusterip-nginx-service</a></p>
+</div>
+<div class="paragraph">
+<p>Exit out of the container using <code>exit</code> command</p>
 </div>
 </div>
 </div>
@@ -555,14 +579,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Run this command to clean up the service and deployment at once. Make sure you are in right folder before you run this command.</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl delete -f- . -n &lt;firstname-lastname&gt;</code></p>
+<p><code>kubectl delete -f . -n &lt;firstname-lastname&gt;</code></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 05:51:46 UTC
+Last updated 2020-11-14 14:08:13 UTC
 </div>
 </div>
 </body>

@@ -462,7 +462,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_what_will_you_need">What will you need</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Make sure you have code for the lab and you are in right path</p>
+<p>Make sure you have code for the lab and you are in right path. Skip this step if you already done this</p>
 </div>
 <div class="paragraph">
 <p>Open up your IDE here</p>
@@ -471,22 +471,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><code><a href="https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/" class="bare">https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/</a></code></p>
 </div>
 <div class="paragraph">
-<p>Clone the repo if you don&#8217;t have.</p>
+<p>Open up terminal if a terminal is not open</p>
+</div>
+<div class="paragraph">
+<p><code>Top left menu button&gt; Terminal &gt; New Terminal</code></p>
+</div>
+<div class="paragraph">
+<p>Change directory to /root</p>
+</div>
+<div class="paragraph">
+<p><code>cd /root</code></p>
+</div>
+<div class="paragraph">
+<p>Clone the repo if you don&#8217;t have it already</p>
 </div>
 <div class="paragraph">
 <p><code>git clone <a href="https://github.com/p360-workshop/DevDays-2020.git" class="bare">https://github.com/p360-workshop/DevDays-2020.git</a></code></p>
-</div>
-<div class="paragraph">
-<p>Change your directory to following folder</p>
-</div>
-<div class="paragraph">
-<p><code>cd DevDays-2020\DockerAndKubernetes\lab-content\1-namespace</code></p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_discover_kubernetes_namespaces">Discover Kubernetes namespaces</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Change your directory to following folder</p>
+</div>
+<div class="paragraph">
+<p><code>cd /root/DevDays-2020/DockerAndKubernetes/lab-content/1-namespace</code></p>
+</div>
 <div class="paragraph">
 <p>Let&#8217;s take a look at the initial Kubernetes namespaces:</p>
 </div>
@@ -502,19 +514,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_create_a_namespace">Create a namespace:</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Creating a namespace can be done with a single command. Since in this lab we share our k8s cluster. Let&#8217;s create a namespace</p>
+<p>Creating a namespace can be done with a single command.</p>
 </div>
 <div class="paragraph">
-<p>We will create namespace with name as our msid so that we don&#8217;t step over each others toes.</p>
+<p>Since in this lab we share common k8s cluster, let&#8217;s create a namespace unique to you. We will create namespace with &lt;firstname-lastname&gt; so that we don&#8217;t step over each others toes.</p>
 </div>
 <div class="paragraph">
 <p><code>kubectl create namespace &lt;firstname-lastname&gt;</code></p>
 </div>
+<div class="paragraph">
+<p>Make sure your namespace got created</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_list_all_namespaces">List all namespaces:</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p><code>kubectl get namespaces</code></p>
 </div>
@@ -524,13 +534,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_delete_a_namespace">Delete a Namespace:</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To delete a namespace there are two options, we can use a yaml file or a single command:</p>
-</div>
-<div class="paragraph">
-<p><code>kubectl delete -f test-namespace.yaml</code></p>
-</div>
-<div class="paragraph">
-<p>or</p>
+<p>To delete a namespace</p>
 </div>
 <div class="paragraph">
 <p><code>kubectl delete namespace &lt;firstname-lastname&gt;</code></p>
@@ -539,9 +543,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Check that the <code>&lt;firstname-lastname&gt;</code> namespace has been successfully deleted:</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl get namespaces</code>
-## Create test namespace using yaml:
-We are  going to re-create   <code><code>&lt;firstname-lastname&gt;</code></code> namespace as we will use it later in this course. But this time we will create it using yaml file.</p>
+<p><code>kubectl get namespaces</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_namespace_using_yaml">Create namespace using yaml:</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We are  going to re-create   <code><code>&lt;firstname-lastname&gt;</code></code> namespace as we will use it later in this course. But this time we will create it using yaml file.</p>
 </div>
 <div class="paragraph">
 <p>You can create a YAML file and apply it, just like any other Kubernetes resource.</p>
@@ -556,6 +566,9 @@ apiVersion: v1
 metadata:
   name: &lt;firstname-lastname&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Plugin your firstname-lastname in the file and then apply the content.</p>
 </div>
 <div class="paragraph">
 <p><code>kubectl apply -f test-namespace.yaml</code></p>
@@ -576,7 +589,7 @@ metadata:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 05:47:08 UTC
+Last updated 2020-11-14 12:47:06 UTC
 </div>
 </div>
 </body>

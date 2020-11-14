@@ -12,22 +12,30 @@ To communicate with the Kubernetes API, we use a CLI tool called ```kubectl```. 
 
 ## What will you need
 
-Make sure you have code for the lab and you are in right path
+Make sure you have code for the lab and you are in right path. Skip this step if you already done this
 
 Open up your IDE here
 
 `https://<firstname-lastname>.hue.providerdataplatform.net/`
 
-Clone the repo if you don't have.
+Open up terminal if a terminal is not open
+
+`Top left menu button> Terminal > New Terminal`
+
+Change directory to /root 
+
+`cd /root`
+
+Clone the repo if you don't have it already
 
 `git clone https://github.com/p360-workshop/DevDays-2020.git`
 
-Change your directory to following folder
-
-`cd DevDays-2020\DockerAndKubernetes\lab-content\1-namespace`
-
 
 ## Discover Kubernetes namespaces 
+
+Change your directory to following folder
+
+`cd /root/DevDays-2020/DockerAndKubernetes/lab-content/1-namespace`
 
 Let's take a look at the initial Kubernetes namespaces:
 
@@ -37,33 +45,29 @@ By default, Kubernetes comes with a few predefined namespaces such as kube-syste
 
 ## Create a namespace:
 
-Creating a namespace can be done with a single command. Since in this lab we share our k8s cluster. Let's create a namespace
- 
-We will create namespace with name as our msid so that we don't step over each others toes. 
+Creating a namespace can be done with a single command. 
+
+
+Since in this lab we share common k8s cluster, let's create a namespace unique to you. We will create namespace with <firstname-lastname> so that we don't step over each others toes. 
 
 `kubectl create namespace <firstname-lastname>`
 
 
-
-
-## List all namespaces:
+Make sure your namespace got created
 
 `kubectl get namespaces`
 
 ## Delete a Namespace:
 
-To delete a namespace there are two options, we can use a yaml file or a single command:
-
-`kubectl delete -f test-namespace.yaml`
-
-or
+To delete a namespace 
  
 `kubectl delete namespace <firstname-lastname>`
 
 Check that the `<firstname-lastname>` namespace has been successfully deleted:
 
 `kubectl get namespaces`
-## Create test namespace using yaml:
+
+## Create namespace using yaml:
 We are  going to re-create   ```<firstname-lastname>``` namespace as we will use it later in this course. But this time we will create it using yaml file.
 
 You can create a YAML file and apply it, just like any other Kubernetes resource.
@@ -78,7 +82,7 @@ metadata:
   name: <firstname-lastname>
 ```
 
-
+Plugin your firstname-lastname in the file and then apply the content.
 
 `kubectl apply -f test-namespace.yaml`
 

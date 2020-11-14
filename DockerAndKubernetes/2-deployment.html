@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </blockquote>
 </div>
 <div class="paragraph">
-<p>In this lab, we’ll explain both how Deployments work from a high-level perspective, and then get our hands dirty by creating a Deployment and seeing how it relates to ReplicaSet and Pod objects.</p>
+<p>In this lab, we’ll explain both how Deployments work from a high-level perspective, and then get our hands dirty by creating a Deployment.</p>
 </div>
 <div class="sect2">
 <h3 id="_deployments">Deployments</h3>
@@ -472,165 +472,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_what_will_you_need">What will you need</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_deployment_object">Deployment Object</h3>
 <div class="paragraph">
-<p>Make sure you have code for the lab and you are in right path</p>
-</div>
-<div class="paragraph">
-<p>Open up your IDE here</p>
-</div>
-<div class="paragraph">
-<p><code><a href="https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/" class="bare">https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/</a></code></p>
-</div>
-<div class="paragraph">
-<p>Clone the repo if you don&#8217;t have.</p>
-</div>
-<div class="paragraph">
-<p><code>git clone <a href="https://github.com/p360-workshop/DevDays-2020.git" class="bare">https://github.com/p360-workshop/DevDays-2020.git</a></code></p>
-</div>
-<div class="paragraph">
-<p>Change your directory to following folder</p>
-</div>
-<div class="paragraph">
-<p><code>cd DevDays-2020\DockerAndKubernetes\lab-content\2-deployment</code></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_creating_a_deployment_in_kubectl">Creating a Deployment in kubectl</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Before we start, you should already have a namespace created called <code>&lt;firstname-lastname&gt;</code> all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:</p>
-</div>
-<div class="paragraph">
-<p><code>kubectl create namespace &lt;YourNamespaceName&gt;</code></p>
-</div>
-<div class="paragraph">
-<p>Create a basic deployment called <code>nginx-deployment</code> using the <code>nginx</code> image, and expose port 80 in the container:</p>
-</div>
-<div class="paragraph">
-<p><code>kubectl run nginx-deployment -n &lt;YourNamespaceName&gt; --image=nginx --port 80</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>$ kubectl run nginx-deployment -n &lt;firstname-lastname&gt; --image=nginx --port 80
-
-deployment.apps "nginx-deployment" created</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now let&#8217;s inspect the deployment that we&#8217;ve just created:</p>
-</div>
-<div class="paragraph">
-<p><code>kubectl get deployment nginx-deployment -n &lt;firstname-lastname&gt; -o yaml</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
-  creationTimestamp: 2018-08-07T18:30:51Z
-  generation: 1
-  labels:
-    run: nginx-deployment
-  name: nginx-deployment
-  namespace: &lt;firstname-lastname&gt;
-  resourceVersion: "849"
-  selfLink: /apis/extensions/v1beta1/namespaces/contino/deployments/nginx-deployment
-  uid: 035c4414-9a70-11e8-a7a6-0242ac110067</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The metadata contains the name of the deployment (which must be unique), an internal uid used by Kubernetes, and the annotations object. It contains one annotation, namely that the current deployment revision is 1. Also as seen in other scenarios throughout this course, each object in Kubernetes can have a set of labels, which are key-value pairs.</p>
-</div>
-<div class="paragraph">
-<p>&gt;<strong>Take Away Point:</strong> Label everything!</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_deployment_object">Deployment Object</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Next, we&#8217;re going to cover the main deployment object, or <code>spec</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>spec:
-  progressDeadlineSeconds: 600
-  replicas: 1
-  revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      run: nginx-deployment
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        run: nginx-deployment
-    spec:
-      containers:
-      - image: nginx
-        imagePullPolicy: Always
-        name: nginx-deployment
-        ports:
-        - containerPort: 80
-          protocol: TCP</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The spec (specification) of the deployment has two keys you must set:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>replicas</code>: describes how many pods this deployment should have. In our case, there will be one only one pod created.</p>
-</li>
-<li>
-<p><code>template</code>: describes how each pod should look like. It describes a list of containers that should be in the Pod.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The two other keys can be set to customize the behavior of the deployment.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>selector</code>: determines which pods are considered to be part of this deployment. This uses labels to 'select' pods.</p>
-</li>
-<li>
-<p><code>strategy</code>: states how an update to a deployment should be rolled out. See earlier at the start of this chapter for the Kubernetes API link on more information on deployment strategies.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_deployment_using_yaml_file">Deployment using yaml file</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Because you have already created a deployment earlier called <code>nginx-deployment</code>, we need to delete it before we can create a new deployment with the YAML manifest:</p>
-</div>
-<div class="paragraph">
-<p><code>kubectl delete deployment nginx-deployment -n &lt;firstname-lastname&gt;</code></p>
-</div>
-<div class="paragraph">
-<p>Before we create the new deployment, let&#8217;s inspect the file:</p>
-</div>
-<div class="paragraph">
-<p>`cat dep-manifest.yaml; `</p>
+<p>Next, we&#8217;re going to cover the main deployment object, or <code>spec</code>. Below is a sample deployment spec</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -667,22 +512,110 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>As you can see, it essentially re-creates the YAML output from the deployment that we created manually in the previous chapter.</p>
+<p>The metadata contains the name of the deployment (which must be unique), an internal uid used by Kubernetes, and the annotations object. It contains one annotation, namely that the current deployment revision is 1. Also as seen in other scenarios throughout this course, each object in Kubernetes can have a set of labels, which are key-value pairs.</p>
 </div>
 <div class="paragraph">
-<p>Now create the deployment:</p>
+<p>&gt;<strong>Take Away Point:</strong> Label everything!</p>
+</div>
+<div class="paragraph">
+<p>The spec (specification) of the deployment has two keys you must set:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>replicas</code>: describes how many pods this deployment should have. In our case, there will be one only one pod created.</p>
+</li>
+<li>
+<p><code>template</code>: describes how each pod should look like. It describes a list of containers that should be in the Pod.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The two other keys can be set to customize the behavior of the deployment.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>selector</code>: determines which pods are considered to be part of this deployment. This uses labels to 'select' pods.</p>
+</li>
+<li>
+<p><code>strategy</code>: states how an update to a deployment should be rolled out. See earlier at the start of this chapter for the Kubernetes API link on more information on deployment strategies.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_will_you_need">What will you need</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Make sure you have code for the lab and you are in right path. Skip this step if you already done this</p>
+</div>
+<div class="paragraph">
+<p>Open up your IDE here</p>
+</div>
+<div class="paragraph">
+<p><code><a href="https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/" class="bare">https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/</a></code></p>
+</div>
+<div class="paragraph">
+<p>Open up terminal if a terminal is not open</p>
+</div>
+<div class="paragraph">
+<p><code>Top left menu button&gt; Terminal &gt; New Terminal</code></p>
+</div>
+<div class="paragraph">
+<p>Change directory to /root</p>
+</div>
+<div class="paragraph">
+<p><code>cd /root</code></p>
+</div>
+<div class="paragraph">
+<p>Clone the repo if you don&#8217;t have it already</p>
+</div>
+<div class="paragraph">
+<p><code>git clone <a href="https://github.com/p360-workshop/DevDays-2020.git" class="bare">https://github.com/p360-workshop/DevDays-2020.git</a></code></p>
+</div>
+<div class="paragraph">
+<p>You should already have a namespace created called <code>&lt;firstname-lastname&gt;</code> all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:</p>
+</div>
+<div class="paragraph">
+<p><code>kubectl create namespace &lt;firstname-lastname&gt;</code></p>
+</div>
+<div class="paragraph">
+<p>Set your default namespace so that you don&#8217;t to specify namespace everytime.</p>
+</div>
+<div class="paragraph">
+<p><code>kubectl config set-context --current --namespace=&lt;firstname-lastname&gt;</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_deployment">Creating a Deployment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Change your directory to following folder</p>
+</div>
+<div class="paragraph">
+<p><code>cd /root/DevDays-2020/DockerAndKubernetes/lab-content/2-deployment</code></p>
+</div>
+<div class="paragraph">
+<p>Create a deployment using this command:</p>
 </div>
 <div class="paragraph">
 <p><code>kubectl create -f dep-manifest.yaml -n &lt;firstname-lastname&gt;</code></p>
 </div>
 <div class="paragraph">
-<p>Get the deployment:</p>
+<p>List the deployment:</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl get deployments -n &lt;firstname-lastname&gt; -o yaml</code></p>
+<p><code>kubectl get deployments -n &lt;firstname-lastname&gt;</code></p>
 </div>
 <div class="paragraph">
-<p>If you go back to the previous chapter where we created the deployment manually, you&#8217;ll see that the output is very similar to the output above.</p>
+<p>Look at the pods that got spunned up</p>
+</div>
+<div class="paragraph">
+<p><code>kubectl get pods -n &lt;firstname-lastname&gt;</code></p>
 </div>
 </div>
 </div>
@@ -690,7 +623,7 @@ spec:
 <h2 id="_scale_deployments">Scale Deployments</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now that you&#8217;ve created your deployment, let&#8217;s look at scaling. Similar to how we created a deployment, you can update the replicas through the deployment manifest or by the <code>kubectl</code> command. For example:</p>
+<p>Now that you&#8217;ve created your deployment, let&#8217;s look at scaling. You can update the replicas through the deployment manifest or by the <code>kubectl</code> command. For example:</p>
 </div>
 <div class="paragraph">
 <p><code>kubectl scale deployment nginx-deployment --replicas=10 -n &lt;firstname-lastname&gt;</code></p>
@@ -699,16 +632,19 @@ spec:
 <p>This will scale the <code>nginx-deployment</code> Deployment to <code>10</code> replicas.</p>
 </div>
 <div class="paragraph">
+<p>Check that you now have 10 pods running</p>
+</div>
+<div class="paragraph">
+<p><code>kubectl get pods -n &lt;firstname-lastname&gt;</code></p>
+</div>
+<div class="paragraph">
 <p>You can also edit this in the manifest. For example:</p>
 </div>
 <div class="paragraph">
-<p><code>vi dep-manifest.yaml</code></p>
+<p>Find the line <code>8</code> in the manifest file(dep-manifest.yaml), and update it to 2 replicas. Then replace the deployment:</p>
 </div>
 <div class="paragraph">
-<p>Find the line <code>9</code> in the manifest, and update it to 10 replicas. <code>:wq</code> in <code>vim</code> to save and exit. Then replace the deployment:</p>
-</div>
-<div class="paragraph">
-<p><code>kubectl replace -f dep-manifest.yaml</code></p>
+<p><code>kubectl replace -f dep-manifest.yaml -n &lt;firstname-lastname&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>Once the deployment has been updated, check the pods:</p>
@@ -717,7 +653,7 @@ spec:
 <p><code>kubectl get po -n &lt;firstname-lastname&gt;</code></p>
 </div>
 <div class="paragraph">
-<p>You should see 10 nginx pods now. You&#8217;ve successfully just scaled your deployment. Equally, to scale down your deployment, simply change the number of replicas and update the deployment again.</p>
+<p>You should see 2 nginx pods now. You&#8217;ve successfully just scaled your deployment.</p>
 </div>
 </div>
 </div>
@@ -728,14 +664,14 @@ spec:
 <p>Run this command to delete the deployment</p>
 </div>
 <div class="paragraph">
-<p><code>kubectl create -f dep-manifest.yaml -n &lt;firstname-lastname&gt;</code></p>
+<p><code>kubectl delete -f dep-manifest.yaml -n &lt;firstname-lastname&gt;</code></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 05:49:58 UTC
+Last updated 2020-11-14 13:28:08 UTC
 </div>
 </div>
 </body>
