@@ -455,6 +455,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_run_the_jar">Run the Jar</a></li>
 <li><a href="#_load_the_sample_data">Load the sample data</a></li>
 <li><a href="#_query_the_elastic_index">Query the elastic index</a></li>
+<li><a href="#_veriy_the_data_by_querying_in_kibana">Veriy the data by querying in Kibana</a></li>
 </ul>
 </li>
 </ul>
@@ -773,10 +774,43 @@ if request is successful, we should see response similar to below
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_veriy_the_data_by_querying_in_kibana">Veriy the data by querying in Kibana</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Launch the Kibana Lab Environment</p>
+<div class="literalblock">
+<div class="content">
+<pre>https://kibana.workshop.providerdataplatform.net</pre>
+</div>
+</div>
+</li>
+<li>
+<p>To List the Indexes</p>
+<div class="literalblock">
+<div class="content">
+<pre>GET /_cat/indices</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get the data from the Index</p>
+<div class="literalblock">
+<div class="content">
+<pre>GET /your_IndexName/_search</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-16 16:24:27 UTC
+Last updated 2020-11-16 20:07:40 UTC
 </div>
 </div>
 </body>

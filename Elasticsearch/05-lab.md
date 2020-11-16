@@ -292,8 +292,21 @@ if request is successful, we should see response similar to below
 
 ```
 
+## Veriy the data by querying in Kibana
 
-  
+1. Launch the Kibana Lab Environment 
+    
+    https://kibana.workshop.providerdataplatform.net
+ 
+1. To List the Indexes
+
+    GET /_cat/indices
+
+2. Get the data from the Index
+
+    GET /your_IndexName/_search
+
+
 
   
   
