@@ -57,7 +57,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
     ```sh
     $ ./kafka-console-consumer --topic streams-wordcount-output --from-beginning --bootstrap-server localhost:9092  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
     ```
-    **Please Note:** This command will not return any results at the moment as there is no data aggregated. Once we run our word count code below, results will be      displayed in this terminal.
+    **Please Note:** This command will not return any results at the moment as there is no data aggregated. Once we run our word count application and produce data to input topic created in prevous step, results will be displayed in this terminal.
 
 ### Running Kafka Streaming application to perform real time aggregation & store data into output kafka topic
 
@@ -90,8 +90,8 @@ The Kafka Streaming application codebase is available [here](https://github.com/
  
 ### Cleanup resources
 
- - Being a good application developer, it necessary to use resource optimially, its better to free up resources after its d=being used.
- - Please execute below command to clean up not required docker containers:
+ - Being a good application developer, it necessary to use resource optimially, its better to free up resources after its being used.
+ - Please execute below command as root user to clean up not required docker containers:
     ```sh
     $ sudo su
     $ docker kill <container_id>
