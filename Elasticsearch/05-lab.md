@@ -7,7 +7,7 @@
 ## What does the lab do
 
 In this lab, we ingest the data into elastic index using Spring boot application, and query elastic index using API end points.
-Further, query the elastic index using Kibana. 
+Further, We can query the elastic index using Kibana Dev Tools. 
 
 Application configuration can be done using the application properties which will be explained in the further lab details!
 
