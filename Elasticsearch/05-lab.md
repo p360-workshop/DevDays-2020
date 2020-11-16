@@ -1,7 +1,15 @@
 :toc:
 
 
-# Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index
+# Data Ingestion through the Spring Boot Application and retrieve the data from Elastric Index
+
+
+## What does the lab do
+
+In this lab, we ingest the data into elastic index using Spring boot application, and query elastic index using API end points.
+Further, query the elastic index using Kibana. 
+
+Application configuration can be done using the application properties which will be explained in the further lab details!
 
 
 ## Review the Code
@@ -154,16 +162,28 @@ Query searchQuery = new NativeSearchQueryBuilder().withQuery(
 
 ## Build the Application
 
+
 Get the code from  https://github.com/raghaj/elasticsearch-dem [here]
+
+Check the current directory, (>pwd)
 
 '''
   git clone https://github.com/raghaj/elasticsearch-demo
   
 '''
+This will clone the code into the current directory
+
+
+
+'''
+  cd elasticsearch-demo
+  
+'''
+
 
 Edit the Configuration properties to configure the elastic index 
 
-The properties is : /src/main/resource/application.properties 
+The properties is : /src/main/resources/application.properties 
 
 ```
 elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com:443 
@@ -190,7 +210,6 @@ Clean build and create Boot Jar
 ```
 
 ./gradlew clean build 
-./gradlew bootJar 
 
 ```
 
@@ -207,11 +226,18 @@ Clean build and create Boot Jar
 Run Jar 
 
 ```
-java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar   
+java -jar ./build/libs/elasticsearch-demo-0.0.1-SNAPSHOT.jar   
 
 ``` 
+
   
 ## Load the sample data 
+
+```
+ Open the new terminal window 
+
+``` 
+
   
 To load the sample data into the elastic index, call the following end point from the service
 

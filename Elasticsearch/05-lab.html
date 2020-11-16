@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index</title>
+<title>Data Ingestion through the Spring Boot Application and retrieve the data from Elastric Index</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,10 +438,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index</h1>
+<h1>Data Ingestion through the Spring Boot Application and retrieve the data from Elastric Index</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_what_does_the_lab_do">What does the lab do</a></li>
 <li><a href="#_review_the_code">Review the Code</a>
 <ul class="sectlevel2">
 <li><a href="#_sample_data_ingestion">Sample Data Ingestion</a></li>
@@ -462,6 +463,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_what_does_the_lab_do">What does the lab do</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, we ingest the data into elastic index using Spring boot application, and query elastic index using API end points.
+Further, query the elastic index using Kibana.</p>
+</div>
+<div class="paragraph">
+<p>Application configuration can be done using the application properties which will be explained in the further lab details!</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_review_the_code">Review the Code</h2>
 <div class="sectionbody">
@@ -618,6 +631,9 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 <div class="paragraph">
 <p>Get the code from  <a href="https://github.com/raghaj/elasticsearch-dem" class="bare">https://github.com/raghaj/elasticsearch-dem</a> [here]</p>
 </div>
+<div class="paragraph">
+<p>Check the current directory, (&gt;pwd)</p>
+</div>
 <hr>
 <div class="literalblock">
 <div class="content">
@@ -626,10 +642,20 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 </div>
 <hr>
 <div class="paragraph">
+<p>This will clone the code into the current directory</p>
+</div>
+<hr>
+<div class="literalblock">
+<div class="content">
+<pre>cd elasticsearch-demo</pre>
+</div>
+</div>
+<hr>
+<div class="paragraph">
 <p>Edit the Configuration properties to configure the elastic index</p>
 </div>
 <div class="paragraph">
-<p>The properties is : /src/main/resource/application.properties</p>
+<p>The properties is : /src/main/resources/application.properties</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -656,8 +682,7 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>./gradlew clean build
-./gradlew bootJar</code></pre>
+<pre class="highlight"><code>./gradlew clean build</code></pre>
 </div>
 </div>
 </div>
@@ -680,7 +705,7 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar</code></pre>
+<pre class="highlight"><code>java -jar ./build/libs/elasticsearch-demo-0.0.1-SNAPSHOT.jar</code></pre>
 </div>
 </div>
 </div>
@@ -688,6 +713,11 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 <div class="sect1">
 <h2 id="_load_the_sample_data">Load the sample data</h2>
 <div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code> Open the new terminal window</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>To load the sample data into the elastic index, call the following end point from the service</p>
 </div>
@@ -813,7 +843,7 @@ if request is successful, we should see response similar to below
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-16 20:19:12 UTC
+Last updated 2020-11-16 20:55:09 UTC
 </div>
 </div>
 </body>
