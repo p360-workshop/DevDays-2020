@@ -1,7 +1,10 @@
+:toc:
+
+
 # Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index
 
 
-## Code
+## Review the Code
 
 launch https://<firstname-lastname>.hue.providerdataplatform.net/
 
@@ -95,7 +98,7 @@ index.name==<firstname-lastname>
 ```
 
 
-# Sample Data Ingestion
+### Sample Data Ingestion
 
 The responseRepository is extended from ElasticSearchRepository 
 
@@ -118,7 +121,7 @@ responseRepository.saveAll(responses);
     
 ```
 
-# Querying the Elastic Index
+### Querying the Elastic Index
 
 ElasticsearchRespository - High level.  Easy to use for simpler operations. 
     
@@ -147,7 +150,9 @@ Query searchQuery = new NativeSearchQueryBuilder().withQuery(
 ```
     
       
-## Ready to Build the Application 
+# Run the Application 
+
+## Build the Application
 
 Get the code from https://github.com/raghaj/elasticsearch-demo
 
@@ -176,7 +181,7 @@ Clean build and create Boot Jar
 
 ```
 
-Build the Spring Boot Jar
+## Build the Spring Boot Jar
 
 ```
 
@@ -193,7 +198,7 @@ java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar
 
 ``` 
   
-## Load the sample data and query the elastic index  
+## Load the sample data 
   
 To load the sample data into the elastic index, call the following end point from the service
 
@@ -205,6 +210,8 @@ If the request is successful, We should get response as
 "responses loaded!"
 
 ```
+
+## Query the elastic index 
 
 To query the Elastic index by a given survey number 
 
