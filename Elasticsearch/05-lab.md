@@ -166,11 +166,24 @@ Edit the Configuration properties to configure the elastic index
 The properties is : /src/main/resource/application.properties 
 
 ```
-elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com:9200 
+elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com:443 
 
 index.name=<firstname-lastname>     
 
 ```
+
+if you are planning to use your local elastic stack
+
+the properties would be 
+
+
+```
+elastic.server=localhost:9200 
+
+index.name=<firstname-lastname>     
+
+```
+
   
 Clean build and create Boot Jar
 

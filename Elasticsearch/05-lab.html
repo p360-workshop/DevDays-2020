@@ -632,7 +632,20 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com:9200
+<pre class="highlight"><code>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com:443
+
+index.name=&lt;firstname-lastname&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>if you are planning to use your local elastic stack</p>
+</div>
+<div class="paragraph">
+<p>the properties would be</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>elastic.server=localhost:9200
 
 index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
@@ -763,7 +776,7 @@ if request is successful, we should see response similar to below
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-16 04:36:54 UTC
+Last updated 2020-11-16 16:24:27 UTC
 </div>
 </div>
 </body>
