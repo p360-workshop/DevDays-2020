@@ -298,11 +298,13 @@ if request is successful, we should see response similar to below
     
     https://kibana.workshop.providerdataplatform.net
  
-1. To List the Indexes
+2. Open 'Dev Tools' from the Left Drop down menu
+
+3. To List the Indexes
 
     GET /_cat/indices
 
-2. Get the data from the Index
+4. Get the data from the Index
 
     GET /your_IndexName/_search
 
