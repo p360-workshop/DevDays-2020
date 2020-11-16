@@ -38,38 +38,76 @@ Ingress Controllers can technically be any system capable of reverse proxying,  
 
 ## What will you need
 
-Make sure you have code for the lab and you are in right path
+Make sure you have code for the lab and you are in right path. Skip this step if you already done this
 
 Open up your IDE here
 
 `https://<firstname-lastname>.hue.providerdataplatform.net/`
 
+Open up terminal if a terminal is not open
+
+`Top left menu button> Terminal > New Terminal`
+
+Change directory to /root 
+
+`cd /root`
+
 Clone the repo if you don't have it already
 
 `git clone https://github.com/p360-workshop/DevDays-2020.git`
 
-Change your directory to following folder
+You should already have a namespace created called `<firstname-lastname>` all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:
 
-`cd DevDays-2020\DockerAndKubernetes\lab-content\5-ingress`
+`kubectl create namespace <firstname-lastname>`
+
+Set your default namespace so that you don't to specify namespace everytime. 
+
+`kubectl config set-context --current --namespace=<firstname-lastname>`
 
 
+
+
+## Creating Ingress
 
 For purpose of this lab,  Ingress Controller has already been created. 
 
 
-## Creating Ingress
+Change your directory to following folder
+
+`cd /root/DevDays-2020/DockerAndKubernetes/lab-content/5-ingress/`
+
 
 To test things out, you need to get your Ingress Definition.
 
 
 Replace <firstname-lastname> in demo-ing.yaml with your firstname and lastname
 
-`kubectl create -f demo-ing.yaml`
+`kubectl create -f demo-ing.yaml --namespace=<firstname-lastname>`
+
+Describe the ingress object that you just created
+
+`kubectl get ing demo-ingress -o yaml --namespace=<firstname-lastname>`
+
+
+
+```
+.....
+  - host: manish-rajkarnikar.p360.providerdataplatform.net
+    http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
+.....
+```
+
+Note the section for hostname mapping. 
+
 
 ## Validation
 
-Open a browser and go https://<firstname-lastname>.p360.providerdataplatform.net/
+Open a browser and go to `https://<firstname-lastname>.p360.providerdataplatform.net/`
 
 ## Cleanup
 
-`kubectl delete -f demo-ing.yaml`
+`kubectl delete -f demo-ing.yaml --namespace=<firstname-lastname>`

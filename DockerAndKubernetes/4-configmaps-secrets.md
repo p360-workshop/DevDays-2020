@@ -12,21 +12,56 @@ In this lab we will create a new Deployment named `secure-monolith` based on the
 
 > The nginx container will be deployed in the same pod as the monolith container because they are tightly coupled.
 
+## What will you need
+
+Make sure you have code for the lab and you are in right path. Skip this step if you already done this
+
+Open up your IDE here
+
+`https://<firstname-lastname>.hue.providerdataplatform.net/`
+
+Open up terminal if a terminal is not open
+
+`Top left menu button> Terminal > New Terminal`
+
+Change directory to /root 
+
+`cd /root`
+
+Clone the repo if you don't have it already
+
+`git clone https://github.com/p360-workshop/DevDays-2020.git`
+
+You should already have a namespace created called `<firstname-lastname>` all lowercase. If you do not have this namespace yet, or you have deleted it, then please re-create it:
+
+`kubectl create namespace <firstname-lastname>`
+
+Set your default namespace so that you don't to specify namespace everytime. 
+
+`kubectl config set-context --current --namespace=<firstname-lastname>`
+
+
 ## Creating Secrets
+
+Change your directory to following folder
+
+`cd /root/DevDays-2020/DockerAndKubernetes/lab-content/4-configmaps-secrets`
+
+
 
 Before we can use the `nginx` container to serve HTTPS traffic we need some TLS certificates. In this tutorial you will store a set of self-signed TLS certificates in Kubernetes as secrets.
 
 Create the `tls-certs` secret from the TLS certificates stored under the tls directory:
 
-```
-kubectl create secret generic tls-certs --from-file=tls/
-```
+`
+kubectl create secret generic tls-certs --from-file=tls/ --namespace=<firstname-lastname>
+`
 
 Examine the `tls-certs` secret:
 
-```
-kubectl describe secrets tls-certs
-```
+`
+kubectl describe secrets tls-certs --namespace=<firstname-lastname>
+`
 
 ### Quiz
 
@@ -39,15 +74,15 @@ The nginx container also needs a configuration file to setup the secure reverse 
 
 Create the `nginx-proxy-conf` configmap based on the `proxy.conf` nginx configuration file:
 
-```
-kubectl create configmap nginx-proxy-conf --from-file=nginx/proxy.conf
-```
+`
+kubectl create configmap nginx-proxy-conf --from-file=nginx/proxy.conf --namespace=<firstname-lastname>
+`
 
 Examine the `nginx-proxy-conf` configmap:
 
-```
-kubectl describe configmaps nginx-proxy-conf
-```
+`
+kubectl describe configmaps nginx-proxy-conf --namespace=<firstname-lastname>
+`
 
 ### Quiz
 
@@ -86,7 +121,13 @@ kubectl port-forward secure-monolith 10443:443
 Use the `curl` command to test the HTTPS endpoint:
 
 ```
-curl --cacert tls/ca.pem https://127.0.0.1:10443
+curl --cacert tls/ca.pem https://127.0.0.1:10443 -k
+```
+
+
+Expected Output
+```
+{"message":"Hello"}
 ```
 
 Use the `kubectl logs` command to verify traffic to the `secure-monolith` Pod:
@@ -105,4 +146,5 @@ Secrets and Configmaps allow you to store application secrets and configuration 
 ```
 kubectl delete -f pods/secure-monolith.yaml
 kubectl delete configmaps nginx-proxy-conf
+kubectl delete secret tls-certs
 ```
