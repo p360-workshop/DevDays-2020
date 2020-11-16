@@ -439,10 +439,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <body class="article">
 <div id="header">
 <h1>Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_review_the_code">Review the Code</a>
+<ul class="sectlevel2">
+<li><a href="#_sample_data_ingestion">Sample Data Ingestion</a></li>
+<li><a href="#_querying_the_elastic_index">Querying the Elastic Index</a></li>
+</ul>
+</li>
+<li><a href="#_run_the_application">Run the Application</a>
+<ul class="sectlevel1">
+<li><a href="#_build_the_application">Build the Application</a></li>
+<li><a href="#_build_the_spring_boot_jar">Build the Spring Boot Jar</a></li>
+<li><a href="#_run_the_jar">Run the Jar</a></li>
+<li><a href="#_load_the_sample_data">Load the sample data</a></li>
+<li><a href="#_query_the_elastic_index">Query the elastic index</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_code">Code</h2>
+<h2 id="_review_the_code">Review the Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>launch <a href="https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/" class="bare">https://&lt;firstname-lastname&gt;.hue.providerdataplatform.net/</a></p>
@@ -537,9 +557,8 @@ public class Response {
 index.name==&lt;firstname-lastname&gt;</code></pre>
 </div>
 </div>
-</div>
-</div>
-<h1 id="_sample_data_ingestion" class="sect0">Sample Data Ingestion</h1>
+<div class="sect2">
+<h3 id="_sample_data_ingestion">Sample Data Ingestion</h3>
 <div class="paragraph">
 <p>The responseRepository is extended from ElasticSearchRepository</p>
 </div>
@@ -561,7 +580,9 @@ public interface ResponseRepository extends ElasticsearchRepository&lt;Response,
 <pre class="highlight"><code>responseRepository.saveAll(responses);</code></pre>
 </div>
 </div>
-<h1 id="_querying_the_elastic_index" class="sect0">Querying the Elastic Index</h1>
+</div>
+<div class="sect2">
+<h3 id="_querying_the_elastic_index">Querying the Elastic Index</h3>
 <div class="paragraph">
 <p>ElasticsearchRespository - High level.  Easy to use for simpler operations.</p>
 </div>
@@ -586,8 +607,12 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 ).build();</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<h1 id="_run_the_application" class="sect0">Run the Application</h1>
 <div class="sect1">
-<h2 id="_ready_to_build_the_application">Ready to Build the Application</h2>
+<h2 id="_build_the_application">Build the Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Get the code from <a href="https://github.com/raghaj/elasticsearch-demo" class="bare">https://github.com/raghaj/elasticsearch-demo</a></p>
@@ -621,9 +646,11 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 ./gradlew bootJar</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Build the Spring Boot Jar</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_build_the_spring_boot_jar">Build the Spring Boot Jar</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>./gradlew bootJar</code></pre>
@@ -645,7 +672,7 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_load_the_sample_data_and_query_the_elastic_index">Load the sample data and query the elastic index</h2>
+<h2 id="_load_the_sample_data">Load the sample data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To load the sample data into the elastic index, call the following end point from the service</p>
@@ -659,6 +686,11 @@ If the request is successful, We should get response as
 "responses loaded!"</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_query_the_elastic_index">Query the elastic index</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>To query the Elastic index by a given survey number</p>
 </div>
@@ -731,7 +763,7 @@ if request is successful, we should see response similar to below
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-13 14:05:19 UTC
+Last updated 2020-11-16 04:05:32 UTC
 </div>
 </div>
 </body>
