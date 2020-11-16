@@ -1,23 +1,35 @@
 # Labs
 
-The Elastic stack can be brought up locally using Docker
+1. The Elastic stack can be brought up locally using Docker
+
+2. Get the code from  https://github.com/raghaj/elasticsearch-dem [here]
+
+'''
+  git clone https://github.com/raghaj/elasticsearch-demo
+  
+'''
+
+
+3. To bring up the local Elastic stack
+
+cd /docker
 
 docker-compose up -d
 
-The local kibana can be accessed here with sample data loaded:  
+4. The local kibana can be accessed here with sample data loaded:  
 
 ```
 http://localhost:5601
 
 ```    
     
-The local Elastic can be accessed at :
+5. The local Elastic can be accessed at :
 
 ```
 http://localhost:9200
 ```    
 
- Kibana in the Lab Environment can be accessed as below: 
+6. Kibana in the Lab Environment can be accessed as below: 
  
 ```
 https://kibana.workshop.providerdataplatform.net

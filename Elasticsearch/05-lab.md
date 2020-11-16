@@ -154,7 +154,7 @@ Query searchQuery = new NativeSearchQueryBuilder().withQuery(
 
 ## Build the Application
 
-Get the code from https://github.com/raghaj/elasticsearch-demo
+Get the code from  https://github.com/raghaj/elasticsearch-dem [here]
 
 '''
   git clone https://github.com/raghaj/elasticsearch-demo
@@ -166,7 +166,7 @@ Edit the Configuration properties to configure the elastic index
 The properties is : /src/main/resource/application.properties 
 
 ```
-elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/ 
+elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com:9200 
 
 index.name=<firstname-lastname>     
 
