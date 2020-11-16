@@ -118,6 +118,12 @@ Forward local port 10443 to 443 of the `secure-monolith` Pod:
 kubectl port-forward secure-monolith 10443:443
 ```
 
+Open up a new terminal 
+
+`Top left menu button> Terminal > New Terminal`
+
+Change directory to `cd /root/DevDays-2020/DockerAndKubernetes/lab-content/4-configmaps-secrets`
+
 Use the `curl` command to test the HTTPS endpoint:
 
 ```
@@ -130,16 +136,11 @@ Expected Output
 {"message":"Hello"}
 ```
 
-Use the `kubectl logs` command to verify traffic to the `secure-monolith` Pod:
+Switch back to first terminal and use the `kubectl logs` command to verify traffic to the `secure-monolith` Pod:
 
 ```
 kubectl logs -c nginx secure-monolith
 ```
-
-## Summary
-
-Secrets and Configmaps allow you to store application secrets and configuration data, then expose them to Pods at runtime. In this lab you learned how to expose Secrets and Configmaps to Pods using volume mounts. You also learned how to run multiple containers in a single Pod.
-
 
 ## Cleanup
 
@@ -148,3 +149,4 @@ kubectl delete -f pods/secure-monolith.yaml
 kubectl delete configmaps nginx-proxy-conf
 kubectl delete secret tls-certs
 ```
+
