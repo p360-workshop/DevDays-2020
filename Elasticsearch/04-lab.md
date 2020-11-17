@@ -13,4 +13,4 @@
     1. Are they the same cities each day?
     
   
-link:05-lab.html[Lab 5 - Visualize - Create]
+link:05-lab.html[Lab 5 - Data Ingestion - Spring Boot Application]
