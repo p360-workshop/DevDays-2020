@@ -12,6 +12,7 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
@@ -42,14 +43,17 @@ public class TestController {
     private final ResponseRepository responseRepository;
     private final RestHighLevelClient restHighLevelClient;
 
+    private final String indexName;
+
     public TestController(ElasticsearchOperations elasticsearchRestTemplate,
                           ObjectMapper objectMapper,
                           ResponseRepository responseRepository,
-                          RestHighLevelClient restHighLevelClient) {
+                          RestHighLevelClient restHighLevelClient,  @Value("${elasticsearch.index}") String indexName) {
         this.elasticsearchRestTemplate = elasticsearchRestTemplate;
         this.objectMapper = objectMapper;
         this.responseRepository = responseRepository;
         this.restHighLevelClient = restHighLevelClient;
+        this.indexName = indexName;
     }
 
     @GetMapping("/load")
@@ -93,7 +97,7 @@ public class TestController {
                         .lte(high)
         ).build();
 
-        SearchHits<Response> hits = elasticsearchRestTemplate.search(searchQuery, Response.class, IndexCoordinates.of("responses"));
+        SearchHits<Response> hits = elasticsearchRestTemplate.search(searchQuery, Response.class, IndexCoordinates.of(indexName));
 
         return hits.stream().map(SearchHit::getContent).collect(Collectors.toList());
     }

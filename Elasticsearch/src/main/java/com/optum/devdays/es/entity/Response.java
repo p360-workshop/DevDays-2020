@@ -3,7 +3,7 @@ package com.optum.devdays.es.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-@Document(indexName = "${application.index.name}")
+@Document(indexName="#{@indexName}")
 public class Response {
 
     @Id
