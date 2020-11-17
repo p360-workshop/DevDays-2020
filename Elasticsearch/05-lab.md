@@ -143,7 +143,7 @@ public List<Response> getResponsesForSurveyId(@PathVariable String surveyId) {
     
 
 ```  
-    
+
     
 ElasticsearchRestTemplate - Provides range query for searching range of values.
 
@@ -163,12 +163,12 @@ Query searchQuery = new NativeSearchQueryBuilder().withQuery(
 ## Build the Application
 
 
-Get the code from  https://github.com/raghaj/elasticsearch-demo [here]
+Get the code from  https://github.com/p360-workshop/DevDays-2020.git [here]
 
 Check the current directory, (>pwd)
 
 '''
-  git clone https://github.com/raghaj/elasticsearch-demo
+  git clone https://github.com/p360-workshop/DevDays-2020.git
   
 '''
 This will clone the code into the current directory
@@ -176,7 +176,7 @@ This will clone the code into the current directory
 
 
 '''
-  cd elasticsearch-demo
+  cd /DevDays-2020/Elasticsearch
   
 '''
 

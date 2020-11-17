@@ -2,10 +2,10 @@
 
 1. The Elastic stack can be brought up locally using Docker
 
-2. Get the code from  https://github.com/raghaj/elasticsearch-demo [here]
+2. Get the code from  https://github.com/p360-workshop/DevDays-2020.git [here]
 
 '''
-  git clone https://github.com/raghaj/elasticsearch-demo
+  git clone https://github.com/p360-workshop/DevDays-2020.git
   
 '''
 
