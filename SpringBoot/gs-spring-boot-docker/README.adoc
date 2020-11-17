@@ -35,16 +35,6 @@ If you use Gradle, run the following command:
 ----
 ====
 
-If you use Maven, run the following command:
-
-====
-[bash,subs="attributes"]
-----
-./mvnw package && java -jar target/{project_id}-0.1.0.jar
-----
-====
-
-
 Then go to http://localhost:8080[localhost:8080] to see your "`Hello Docker World`" message.
 
 == Containerize It
@@ -56,7 +46,7 @@ Docker has a simple https://docs.docker.com/reference/builder/["Dockerfile"] fil
 [source]
 ----
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 ----
@@ -67,20 +57,11 @@ If you use Gradle, you can run it with the following command:
 ====
 [source,bash,subs="attributes"]
 ----
-docker build --build-arg JAR_FILE=build/libs/*.jar -t springio/gs-spring-boot-docker .
+docker build -t gs-spring-boot-docker:0.1.0  --build-arg JAR_FILE=build/libs/gs-spring-boot-docker-0.1.0.jar .
 ----
 ====
 
-If you use Maven, you can run it with the following command:
-
-====
-[source,bash,subs="attributes"]
-----
-docker build -t springio/gs-spring-boot-docker .
-----
-====
-
-This command builds an image and tags it as `springio/gs-spring-boot-docker`.
+This command builds an image and tags it as `gs-spring-boot-docker:0.1.0`.
 
 This Dockerfile is very simple, but it is all you need to run a Spring Boot app with no frills: just Java and a JAR file. The build creates a spring user and a spring group to run the application. It is then copied (by the `COPY` command) the project JAR file into the container as `app.jar`, which is run in the `ENTRYPOINT`. The array form of the Dockerfile `ENTRYPOINT` is used so that there is no shell wrapping the Java process. The https://spring.io/guides/topicals/spring-boot-docker[Topical Guide on Docker] goes into this topic in more detail.
 
@@ -95,7 +76,7 @@ So, an important improvement to the `Dockerfile` is to run the application as a 
 FROM openjdk:8-jdk-alpine
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 ----
@@ -106,8 +87,8 @@ You can see the username in the application startup logs when you build and run 
 ====
 [source,bash]
 ----
-docker build -t springio/gs-spring-boot-docker .
-docker run -p 8080:8080 springio/gs-spring-boot-docker
+docker build -t gs-spring-boot-docker:0.1.0 .
+docker run -p 8080:8080 gs-spring-boot-docker:0.1.0
 ----
 ====
 
@@ -123,75 +104,6 @@ Note the `started by` in the first `INFO` log entry:
 ----
 ====
 
-=== After the Push
-
-A `docker push` in the example fails (unless you are part of the "springio" organization at Dockerhub). However, if you change the configuration to match your own docker ID, it should succeed. You then have a new tagged, deployed image.
-
-You do NOT have to register with docker or publish anything to run a docker image that was built locally. If you built with Docker (from the command line or from Spring Boot), you still have a locally tagged image, and you can run it like this:
-
-====
-[source,bash]
-----
-$ docker run -p 8080:8080 -t springio/gs-spring-boot-docker
-Container memory limit unset. Configuring JVM for 1G container.
-Calculated JVM Memory Configuration: -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=86381K -XX:ReservedCodeCacheSize=240M -Xss1M -Xmx450194K (Head Room: 0%, Loaded Class Count: 12837, Thread Count: 250, Total Memory: 1073741824)
-....
-2015-03-31 13:25:48.035  INFO 1 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
-2015-03-31 13:25:48.037  INFO 1 --- [           main] hello.Application                        : Started Application in 5.613 seconds (JVM running for 7.293)
-----
-====
-
-NOTE: The CF memory calculator is used at runtime to size the JVM to fit the container.
-
-The application is then available on http://localhost:8080 (visit that and it says, "`Hello Docker World`").
-
-[NOTE]
-=====
-When using a Mac with boot2docker, you typically see things like this at startup:
-
-====
-[source]
-----
-Docker client to the Docker daemon, please set:
-    export DOCKER_CERT_PATH=/Users/gturnquist/.boot2docker/certs/boot2docker-vm
-    export DOCKER_TLS_VERIFY=1
-    export DOCKER_HOST=tcp://192.168.59.103:2376
-----
-====
-
-To see the application, you must visit the IP address in DOCKER_HOST instead of localhost -- in this case,
-https://192.168.59.103:8080, the public facing IP of the VM.
-=====
-
-When it is running, you can see in the list of containers, similar to the following example:
-
-====
-[source,bash]
-----
-$ docker ps
-CONTAINER ID        IMAGE                                   COMMAND                  CREATED             STATUS              PORTS                    NAMES
-81c723d22865        springio/gs-spring-boot-docker:latest   "java -Djava.secur..."   34 seconds ago      Up 33 seconds       0.0.0.0:8080->8080/tcp   goofy_brown
-----
-====
-
-To shut it down again, you can run `docker stop` with the container ID from the previous listing (yours will be different):
-
-====
-[source,bash]
-----
-docker stop goofy_brown
-81c723d22865
-----
-====
-
-If you like, you can also delete the container (it is persisted in your filesystem somewhere under `/var/lib/docker`) when you are finished with it:
-
-====
-[source,bash]
-----
-docker rm goofy_brown
-----
-====
 
 === Using Spring Profiles
 
@@ -200,7 +112,7 @@ Running your freshly minted Docker image with Spring profiles is as easy as pass
 ====
 [source,bash]
 ----
-docker run -e "SPRING_PROFILES_ACTIVE=prod" -p 8080:8080 -t springio/gs-spring-boot-docker
+docker run -e "SPRING_PROFILES_ACTIVE=prod" -p 8080:8080 -t gs-spring-boot-docker:0.1.0
 ----
 ====
 
@@ -208,21 +120,7 @@ You can do the same for the `dev` profile:
 
 ====
 ----
-docker run -e "SPRING_PROFILES_ACTIVE=dev" -p 8080:8080 -t springio/gs-spring-boot-docker
-----
-====
-
-=== Debugging the Application in a Docker Container
-
-To debug the application, you can use https://docs.oracle.com/javase/8/docs/technotes/guides/jpda/conninv.html#Invocation[JPDA Transport]. We treat the container like a remote server.
-To enable this feature, pass Java agent settings in the `JAVA_OPTS` variable and map the agent's port
-to localhost during a container run. With https://www.docker.com/products/docker#/mac[Docker for Mac], there is a limitation because we can't
-access the container by IP without https://github.com/docker/for-mac/issues/171[black magic usage].
-
-====
-[source,bash]
-----
-docker run -e "JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n" -p 8080:8080 -p 5005:5005 -t springio/gs-spring-boot-docker
+docker run -e "SPRING_PROFILES_ACTIVE=dev" -p 8080:8080 -t gs-spring-boot-docker:0.1.0
 ----
 ====
 

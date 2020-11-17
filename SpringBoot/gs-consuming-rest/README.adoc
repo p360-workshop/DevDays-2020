@@ -16,8 +16,9 @@ Spring Boot quotation at https://gturnquist-quoters.cfapps.io/api/random.
 
 [[scratch]]
 == Start by checking out the lab code
+Open your instance of web-browser IDE by replacing your firs and last name in this URL: `https://<firstname-lastname>.hue.providerdataplatform.net`
 
-Check out https://github.com/siavash1986/gs-consuming-rest[gs-consuming-rest] repository to your local development environment and open initial folder
+Navigate to `gs-consuming-rest` project and then open `initial` folder
 
 The following listing shows the `build.gradle` file located in the initial folder:
 
@@ -146,6 +147,14 @@ include::complete/src/main/java/com/example/consumingrest/ConsumingRestApplicati
 ====
 
 == Running the Application
+Run the application by typing the following command in your terminal:
+
+====
+[subs="attributes"]
+----
+$ ./gradlew bootRun
+----
+====
 
 You should see output similar to the following but with a random quotation:
 

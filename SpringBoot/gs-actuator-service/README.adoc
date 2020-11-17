@@ -33,13 +33,15 @@ It responds with the following JSON:
 
 There are also many features added to your application for managing the service in a
 production (or other) environment. The business functionality of the service you build is
-the same as in {gs-rest-service}[Building a RESTful Web Service]. You need need not use
+the same as in https://spring.io/guides/gs/rest-service/[Building a RESTful Web Service]. You need not use
 that guide to take advantage of this one, although it might be interesting to compare the
 results.
 
 == Start by checking out the lab code
 
-Check out https://github.com/siavash1986/gs-actuator-service[gs-actuator-service] repository to your local development environment and open initial folder
+Open your instance of web-browser IDE by replacing your firs and last name in this URL: `https://<firstname-lastname>.hue.providerdataplatform.net`
+
+Navigate to `gs-actuator-service` project and then open `initial` folder
 
 The following listing shows the build.gradle file located in the initial folder:
 
@@ -75,7 +77,7 @@ launch the web application. All you need to do is run the following command:
 ====
 [source,bash,subs="attributes"]
 ----
-$ ./gradlew clean build && java -jar build/libs/{project_id}-0.1.0.jar
+$ ./gradlew clean build && java -jar build/libs/{project_id}-0.0.1-SNAPSHOT.jar
 ----
 ====
 
@@ -172,21 +174,16 @@ specifies that JSON should be returned.
 
 == Run the Application
 
-You can run the application from a custom main class or directly from one of the
-configuration classes. For this simple example, you can use the `SpringApplication` helper
-class. Note that this is the application class that the Spring Initializr created for you,
-and you need not even modify it for it to work for this simple application. The following
-listing (from `src/main/java/com/example/actuatorservice/HelloWorldApplication.java`)
-shows the application class:
+Run the application by typing the following command in your terminal:
 
 ====
-[source,java,tabsize=2]
+[subs="attributes"]
 ----
-include::complete/src/main/java/com/example/actuatorservice/HelloWorldApplication.java[]
+$ ./gradlew bootRun
 ----
 ====
 
-Once the service is running (because you ran `spring-boot:run` in a terminal), you can test it by running the following command in a separate terminal:
+Once the service is running (because you ran `bootRun` in a terminal), you can test it by running the following command in a separate terminal:
 
 ====
 [source,bash]
@@ -214,7 +211,7 @@ Run the server again by running the following command in a terminal:
 ====
 [subs="attributes"]
 ----
-$ ./gradlew clean build && java -jar build/libs/{project_id}-0.1.0.jar
+$ ./gradlew clean build && java -jar build/libs/{project_id}-0.0.1-SNAPSHOT.jar
 ----
 ====
 
