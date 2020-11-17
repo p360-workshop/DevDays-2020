@@ -533,7 +533,7 @@ public class Application {
                 <p>Docker has a simple <a href="https://docs.docker.com/reference/builder/">"Dockerfile"</a> file format that it uses to specify the &#8220;layers&#8221; of an image. Create the following Dockerfile in your Spring Boot project:</p>
             </div>
             <div class="exampleblock">
-                <div class="title">Example 1. Dockerfile</div>
+                <div class="title">Step 1. Dockerfile (privileged user)</div>
                 <div class="content">
                     <div class="listingblock">
                         <div class="content">
@@ -568,7 +568,7 @@ ENTRYPOINT ["java","-jar","/app.jar"]</code></pre>
                     So, an important improvement to the <code>Dockerfile</code> is to run the application as a non-root user:</p>
             </div>
             <div class="exampleblock">
-                <div class="title">Example 2. Dockerfile</div>
+                <div class="title">Step 2. Dockerfile (non-privileged user)</div>
                 <div class="content">
                     <div class="listingblock">
                         <div class="content">
