@@ -163,7 +163,7 @@ Query searchQuery = new NativeSearchQueryBuilder().withQuery(
 ## Build the Application
 
 
-Get the code from  https://github.com/raghaj/elasticsearch-dem [here]
+Get the code from  https://github.com/raghaj/elasticsearch-demo [here]
 
 Check the current directory, (>pwd)
 
