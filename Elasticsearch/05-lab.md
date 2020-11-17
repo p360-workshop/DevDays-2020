@@ -30,7 +30,7 @@ dependencies {
 
 ```
    
-The sample data model, that is going to be pushed is created as below. The Elastic indecx is configured through application configurations 
+The sample data model, that is going to be pushed is created as below. The Elastic index is configured through application configurations 
 
 ``` 
 
@@ -318,7 +318,7 @@ if request is successful, we should see response similar to below
 
 ```
 
-## Veriy the data by querying in Kibana
+## Verify the data by querying in Kibana
 
 1. Launch the Kibana Lab Environment 
     

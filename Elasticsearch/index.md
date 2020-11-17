@@ -2,7 +2,7 @@
 
 1. The Elastic stack can be brought up locally using Docker
 
-2. Get the code from  https://github.com/raghaj/elasticsearch-dem [here]
+2. Get the code from  https://github.com/raghaj/elasticsearch-demo [here]
 
 '''
   git clone https://github.com/raghaj/elasticsearch-demo
