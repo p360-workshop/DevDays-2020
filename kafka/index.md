@@ -57,6 +57,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
     ```sh
     $ ./kafka-console-consumer --topic streams-wordcount-output --from-beginning --bootstrap-server localhost:9092  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
     ```
+**Please Note:** This command will not return any results at the moment as there is no data aggregated. Once we run our word count application and produce data to input topic created in prevous step, results will be displayed in this terminal.
 
 ### Running Kafka Streaming application to perform real time aggregation & store data into output kafka topic
 
@@ -68,6 +69,7 @@ The Kafka Streaming application codebase is available [here](https://github.com/
     $ docker exec -it <container_id> /bin/bash
     $ java -cp kafka-streams-examples-6.0.0-standalone.jar io.confluent.examples.streams.WordCountLambdaExample
     ```
+**Please Note:** The Wordcount streams application gets started after running the above command in this terminal and hence no output will be displayed.
 
 ### Running Kafka Producer application to generate real time data to valdiate the application
 
@@ -79,6 +81,8 @@ The Kafka Streaming application codebase is available [here](https://github.com/
     $ docker exec -it <container_id> /bin/bash
     $ ./kafka-console-producer --broker-list localhost:9092 --topic streams-plaintext-input
     ```
+ - Running above command starts a kafka producer in this terminal. Typing words in this terminal will cause the Wordcount application to perform processing on them and results aggregated and sent to streams-wordcount-output topic. You can check the final output by going back to the terminal in which kafka-consumer command was run.
+ 
 ### Valdiate Application
 
  - The data that woudl be produced over producer terminal would be aggregated based on words and the resultatnt aggregated output would be displayed with its count over the consumer terminal.

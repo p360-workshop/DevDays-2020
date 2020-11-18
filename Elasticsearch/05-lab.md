@@ -1,7 +1,15 @@
 :toc:
 
 
-# Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index
+# Data Ingestion through the Spring Boot Application and retrieve the data from Elastric Index
+
+
+## What does the lab do
+
+In this lab, we ingest the data into elastic index using Spring boot application, and query elastic index using API end points.
+Further, We can query the elastic index using Kibana Dev Tools. 
+
+Application configuration can be done using the application properties which will be explained in the further lab details!
 
 
 ## Review the Code
@@ -22,7 +30,7 @@ dependencies {
 
 ```
    
-The sample data model, that is going to be pushed is created as below. The Elastic indecx is configured through application configurations 
+The sample data model, that is going to be pushed is created as below. The Elastic index is configured through application configurations 
 
 ``` 
 
@@ -135,7 +143,7 @@ public List<Response> getResponsesForSurveyId(@PathVariable String surveyId) {
     
 
 ```  
-    
+
     
 ElasticsearchRestTemplate - Provides range query for searching range of values.
 
@@ -154,30 +162,54 @@ Query searchQuery = new NativeSearchQueryBuilder().withQuery(
 
 ## Build the Application
 
-Get the code from https://github.com/raghaj/elasticsearch-demo
+
+Get the code from  https://github.com/p360-workshop/DevDays-2020.git [here]
+
+Check the current directory, (>pwd)
 
 '''
-  git clone https://github.com/raghaj/elasticsearch-demo
+  git clone https://github.com/p360-workshop/DevDays-2020.git
+  
+'''
+This will clone the code into the current directory
+
+
+
+'''
+  cd /DevDays-2020/Elasticsearch
   
 '''
 
+
 Edit the Configuration properties to configure the elastic index 
 
-The properties is : /src/main/resource/application.properties 
+The properties is : /src/main/resources/application.properties 
 
 ```
-elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/ 
+elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com:443 
 
 index.name=<firstname-lastname>     
 
 ```
+
+if you are planning to use your local elastic stack
+
+the properties would be 
+
+
+```
+elastic.server=localhost:9200 
+
+index.name=<firstname-lastname>     
+
+```
+
   
 Clean build and create Boot Jar
 
 ```
 
 ./gradlew clean build 
-./gradlew bootJar 
 
 ```
 
@@ -194,11 +226,18 @@ Clean build and create Boot Jar
 Run Jar 
 
 ```
-java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar   
+java -jar ./build/libs/elasticsearch-demo-0.0.1-SNAPSHOT.jar   
 
 ``` 
+
   
 ## Load the sample data 
+
+```
+ Open the new terminal window 
+
+``` 
+
   
 To load the sample data into the elastic index, call the following end point from the service
 
@@ -279,8 +318,23 @@ if request is successful, we should see response similar to below
 
 ```
 
+## Verify the data by querying in Kibana
 
-  
+1. Launch the Kibana Lab Environment 
+    
+    https://kibana.workshop.providerdataplatform.net
+ 
+2. Open 'Dev Tools' from the Left Drop down menu
+
+3. To List the Indexes
+
+    GET /_cat/indices
+
+4. Get the data from the Index
+
+    GET /your_IndexName/_search
+
+
 
   
   

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index</title>
+<title>Data Ingestion through the Spring Boot Application and retrieve the data from Elastric Index</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,10 +438,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Data Ingestion through the Spring Boot Application and retrieve te data from Elastric Index</h1>
+<h1>Data Ingestion through the Spring Boot Application and retrieve the data from Elastric Index</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_what_does_the_lab_do">What does the lab do</a></li>
 <li><a href="#_review_the_code">Review the Code</a>
 <ul class="sectlevel2">
 <li><a href="#_sample_data_ingestion">Sample Data Ingestion</a></li>
@@ -455,12 +456,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_run_the_jar">Run the Jar</a></li>
 <li><a href="#_load_the_sample_data">Load the sample data</a></li>
 <li><a href="#_query_the_elastic_index">Query the elastic index</a></li>
+<li><a href="#_verify_the_data_by_querying_in_kibana">Verify the data by querying in Kibana</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_what_does_the_lab_do">What does the lab do</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, we ingest the data into elastic index using Spring boot application, and query elastic index using API end points.
+Further, We can query the elastic index using Kibana Dev Tools.</p>
+</div>
+<div class="paragraph">
+<p>Application configuration can be done using the application properties which will be explained in the further lab details!</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_review_the_code">Review the Code</h2>
 <div class="sectionbody">
@@ -483,7 +497,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>The sample data model, that is going to be pushed is created as below. The Elastic indecx is configured through application configurations</p>
+<p>The sample data model, that is going to be pushed is created as below. The Elastic index is configured through application configurations</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -615,12 +629,25 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 <h2 id="_build_the_application">Build the Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Get the code from <a href="https://github.com/raghaj/elasticsearch-demo" class="bare">https://github.com/raghaj/elasticsearch-demo</a></p>
+<p>Get the code from  <a href="https://github.com/p360-workshop/DevDays-2020.git" class="bare">https://github.com/p360-workshop/DevDays-2020.git</a> [here]</p>
+</div>
+<div class="paragraph">
+<p>Check the current directory, (&gt;pwd)</p>
 </div>
 <hr>
 <div class="literalblock">
 <div class="content">
-<pre>git clone https://github.com/raghaj/elasticsearch-demo</pre>
+<pre>git clone https://github.com/p360-workshop/DevDays-2020.git</pre>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>This will clone the code into the current directory</p>
+</div>
+<hr>
+<div class="literalblock">
+<div class="content">
+<pre>cd /DevDays-2020/Elasticsearch</pre>
 </div>
 </div>
 <hr>
@@ -628,11 +655,24 @@ public List&lt;Response&gt; getResponsesForSurveyId(@PathVariable String surveyI
 <p>Edit the Configuration properties to configure the elastic index</p>
 </div>
 <div class="paragraph">
-<p>The properties is : /src/main/resource/application.properties</p>
+<p>The properties is : /src/main/resources/application.properties</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com/
+<pre class="highlight"><code>elastic.server=https://vpc-p360-workshop-es-zlorjg2hjxh6cwsmstzgqgap2u.us-east-1.es.amazonaws.com:443
+
+index.name=&lt;firstname-lastname&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>if you are planning to use your local elastic stack</p>
+</div>
+<div class="paragraph">
+<p>the properties would be</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>elastic.server=localhost:9200
 
 index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
@@ -642,8 +682,7 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>./gradlew clean build
-./gradlew bootJar</code></pre>
+<pre class="highlight"><code>./gradlew clean build</code></pre>
 </div>
 </div>
 </div>
@@ -666,7 +705,7 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>java -jar ./build/libs/elastic-dev-days-demo-0.0.1-SNAPSHOT.jar</code></pre>
+<pre class="highlight"><code>java -jar ./build/libs/elasticsearch-demo-0.0.1-SNAPSHOT.jar</code></pre>
 </div>
 </div>
 </div>
@@ -674,6 +713,11 @@ index.name=&lt;firstname-lastname&gt;</code></pre>
 <div class="sect1">
 <h2 id="_load_the_sample_data">Load the sample data</h2>
 <div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code> Open the new terminal window</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>To load the sample data into the elastic index, call the following end point from the service</p>
 </div>
@@ -760,10 +804,46 @@ if request is successful, we should see response similar to below
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_verify_the_data_by_querying_in_kibana">Verify the data by querying in Kibana</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Launch the Kibana Lab Environment</p>
+<div class="literalblock">
+<div class="content">
+<pre>https://kibana.workshop.providerdataplatform.net</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open 'Dev Tools' from the Left Drop down menu</p>
+</li>
+<li>
+<p>To List the Indexes</p>
+<div class="literalblock">
+<div class="content">
+<pre>GET /_cat/indices</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get the data from the Index</p>
+<div class="literalblock">
+<div class="content">
+<pre>GET /your_IndexName/_search</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-16 04:05:32 UTC
+Last updated 2020-11-17 20:34:37 UTC
 </div>
 </div>
 </body>
