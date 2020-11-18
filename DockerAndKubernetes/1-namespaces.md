@@ -57,17 +57,8 @@ Make sure your namespace got created
 
 `kubectl get namespaces`
 
-## Delete a Namespace:
 
-To delete a namespace 
- 
-`kubectl delete namespace <firstname-lastname>`
-
-Check that the `<firstname-lastname>` namespace has been successfully deleted:
-
-`kubectl get namespaces`
-
-## Create namespace using yaml:
+## Create namespace using yaml (optional):
 We are  going to re-create   ```<firstname-lastname>``` namespace as we will use it later in this course. But this time we will create it using yaml file.
 
 You can create a YAML file and apply it, just like any other Kubernetes resource.
