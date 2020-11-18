@@ -9,7 +9,7 @@ In this workshop, we will go cover basics of following topics
 
 This workshop is available at 
 
-https://p360-workshop.github.io/DevDays-2020
+https://github.com/p360-workshop/DevDays-2020
 
 
 ## Environment
