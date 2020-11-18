@@ -112,10 +112,10 @@ kubectl create -f pods/secure-monolith.yaml
 
 #### Test the HTTPS endpoint
 
-Forward local port 10443 to 443 of the `secure-monolith` Pod:
+Forward local port 10444 to 443 of the `secure-monolith` Pod:
 
 ```
-kubectl port-forward secure-monolith 10443:443
+kubectl port-forward secure-monolith 10444:443
 ```
 
 Open up a new terminal 
@@ -127,7 +127,7 @@ Change directory to `cd /root/DevDays-2020/DockerAndKubernetes/lab-content/4-con
 Use the `curl` command to test the HTTPS endpoint:
 
 ```
-curl --cacert tls/ca.pem https://127.0.0.1:10443 -k
+curl --cacert tls/ca.pem https://127.0.0.1:10444 -k
 ```
 
 
