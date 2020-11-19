@@ -42,6 +42,6 @@ spec:
     spec:
       containers:
       - name: echoserver
-        image: nginx
+        image: 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:nginx
         ports:
         - containerPort: 80

@@ -21,7 +21,7 @@ spec:
         run: nginx-deployment
     spec:
       containers:
-      - image: nginx
+      - image: 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:nginx
         imagePullPolicy: Always
         name: nginx-deployment
         ports:

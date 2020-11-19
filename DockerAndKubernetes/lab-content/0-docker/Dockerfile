@@ -5,7 +5,7 @@
 
 
 # Set the base image to Ubuntu
-FROM ubuntu
+FROM 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:ubuntu
 
 # File Author / Maintainer
 MAINTAINER Karthik Gaekwad

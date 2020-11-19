@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: nginx
-      image: "nginx:1.9.14"
+      image: 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:nginx-1.9.14
       lifecycle:
         preStop:
           exec:
@@ -18,7 +18,7 @@ spec:
         - name: "tls-certs"
           mountPath: "/etc/tls"
     - name: monolith
-      image: "askcarter/monolith:1.0.0"
+      image: "840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:monolith"
       ports:
         - name: http
           containerPort: 80

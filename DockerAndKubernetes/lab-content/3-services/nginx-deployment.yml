@@ -17,7 +17,7 @@ spec:
         name: nginx
     spec:
       containers:
-      - image: katacoda/docker-http-server:latest
+      - image: 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:docker-http-server
         name: nginx
         ports:
         - name: http
