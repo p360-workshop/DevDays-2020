@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:openjdk
 
 # install net-tools and vim
 RUN apt update \
