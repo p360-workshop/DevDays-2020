@@ -11,7 +11,7 @@ Look at the file `/Dockerfile`
 
 ```
 # Set the base image to Ubuntu
-FROM ubuntu
+FROM 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:ubuntu
 
 # Update the repository
 RUN apt-get update
