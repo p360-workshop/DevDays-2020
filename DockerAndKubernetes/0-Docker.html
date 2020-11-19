@@ -536,6 +536,12 @@ CMD ["nginx"]</code></pre>
 <p><code>cd /root/DevDays-2020/DockerAndKubernetes/lab-content/0-docker</code></p>
 </div>
 <div class="paragraph">
+<p>Authenticate to ECR so that you can push image</p>
+</div>
+<div class="paragraph">
+<p><code>docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) <a href="https://840891909344.dkr.ecr.us-east-1.amazonaws.com" class="bare">https://840891909344.dkr.ecr.us-east-1.amazonaws.com</a></code></p>
+</div>
+<div class="paragraph">
 <p>To build a docker container image from a Dockerbuild file run the following</p>
 </div>
 <div class="paragraph">
@@ -546,12 +552,6 @@ CMD ["nginx"]</code></pre>
 </div>
 <div class="paragraph">
 <p><code>docker images</code></p>
-</div>
-<div class="paragraph">
-<p>Authenticate to ECR so that you can push image</p>
-</div>
-<div class="paragraph">
-<p><code>docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) <a href="https://840891909344.dkr.ecr.us-east-1.amazonaws.com" class="bare">https://840891909344.dkr.ecr.us-east-1.amazonaws.com</a></code></p>
 </div>
 <div class="paragraph">
 <p>To push the image that you just built , run the following command:</p>
@@ -626,7 +626,7 @@ CMD ["nginx"]</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-19 00:58:11 UTC
+Last updated 2020-11-19 01:27:57 UTC
 </div>
 </div>
 </body>
