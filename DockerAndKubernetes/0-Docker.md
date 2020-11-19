@@ -11,7 +11,7 @@ Look at the file `/Dockerfile`
 
 ```
 # Set the base image to Ubuntu
-FROM ubuntu
+FROM 840891909344.dkr.ecr.us-east-1.amazonaws.com/workshop:ubuntu
 
 # Update the repository
 RUN apt-get update
@@ -76,6 +76,10 @@ Change your directory to following folder
 
 `cd /root/DevDays-2020/DockerAndKubernetes/lab-content/0-docker`
 
+Authenticate to ECR so that you can push image
+
+`docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) https://840891909344.dkr.ecr.us-east-1.amazonaws.com`
+
 
 To build a docker container image from a Dockerbuild file run the following
 
@@ -85,9 +89,6 @@ To see image you have available in your machine run the following:
 
 `docker images`
 
-Authenticate to ECR so that you can push image
-
-`docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) https://840891909344.dkr.ecr.us-east-1.amazonaws.com`
 
 To push the image that you just built , run the following command:
 
